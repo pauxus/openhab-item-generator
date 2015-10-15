@@ -3,6 +3,7 @@ package com.blackbuild.openhab.generator.model
 import com.blackbuild.groovy.configdsl.transform.DSL
 import com.blackbuild.groovy.configdsl.transform.Key
 import com.blackbuild.groovy.configdsl.transform.Owner
+import com.blackbuild.openhab.generator.Visitor
 
 @DSL
 abstract class OpenHabElement {
@@ -23,7 +24,11 @@ abstract class OpenHabElement {
     abstract String getPrefix()
 
     String getFullName() {
-        "${parentGroup ? parentGroup.fullName + '_' : prefix}$name"
+        "${parentGroup ? parentGroup.fullName + '_' : prefix}$safeName"
+    }
+
+    String getSafeName() {
+        name.replace(" ", "").replaceAll("\\W+", "")
     }
 
     List<Group> additionalGroups
@@ -31,7 +36,15 @@ abstract class OpenHabElement {
     Map<String,String> properties
 
     List<Group> getAllGroups() {
-        return additionalGroups + mainGroup
+        return additionalGroups + parentGroup
+    }
+
+    String getAllGroupsAsString() {
+        return allGroups*.fullName.join(",")
+    }
+
+    def accept(Visitor visitor) {
+        visitor.visit(this)
     }
 
 }

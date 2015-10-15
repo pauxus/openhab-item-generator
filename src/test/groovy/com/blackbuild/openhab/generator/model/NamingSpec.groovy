@@ -15,10 +15,15 @@ class NamingSpec extends Specification {
         [config, name] << [
                 [Group.create("FirstFloor") {}, "gFirstFloor"],
                 [Group.create("FirstFloor"){
-                    subGroups {
-                        subGroup("Bath") {}
+                    groups {
+                        group("Bath") {}
                     }
-                }.subGroups[0], "gFirstFloor_Bath"]
+                }.groups[0], "gFirstFloor_Bath"],
+                [Group.create("First Floor"){
+                    groups {
+                        group("Küche") {}
+                    }
+                }.groups[0], "gFirstFloor_Kche"],
         ]
     }
 

@@ -1,3 +1,4 @@
+import com.blackbuild.openhab.generator.model.HomeMaticHeating
 import com.blackbuild.openhab.generator.model.OpenHabConfig
 
 OpenHabConfig.create {
@@ -7,8 +8,14 @@ OpenHabConfig.create {
         group("DG") {
 
             items {
-                item("")
+                item("") {
 
+                }
+
+
+                item(HomeMaticHeating, "WZ") {
+
+                }
             }
 
 

@@ -19,4 +19,8 @@ abstract class TemplateScript extends Script {
         value.length() > 2 ? value : ""
     }
 
+    static String safe(String value) {
+        value.replace(" ", "").replaceAll("\\W+", "")
+    }
+
 }

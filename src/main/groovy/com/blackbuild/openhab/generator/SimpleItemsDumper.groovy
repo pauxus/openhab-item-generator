@@ -1,39 +1,71 @@
 package com.blackbuild.openhab.generator
 
-import com.blackbuild.openhab.generator.model.Group
-import com.blackbuild.openhab.generator.model.Item
 import com.blackbuild.openhab.generator.model.OpenHabElement
+import groovy.io.FileType
+import groovy.text.GStringTemplateEngine
+import groovy.text.Template
+import org.codehaus.groovy.control.CompilerConfiguration
 
 class SimpleItemsDumper implements Visitor {
 
     private final static String DEFAULT_TEMPLATE_NAME = "default"
 
-    StringWriter output = new StringWriter()
+    Map<String, StringWriter> outputs = [:].withDefault { new StringWriter() }
+    Map<String, Map<String, Class<? extends TemplateScript>>> groovyTemplates = [:].withDefault { [:] }
+    Map<String, Map<String, Template>> textTemplates = [:].withDefault { [:] }
 
+    SimpleItemsDumper(File templateDir) {
+        readTemplates(templateDir)
+    }
+
+    def readTemplates(File templateDir) {
+
+        def gcl = new GroovyClassLoader(Thread.currentThread().contextClassLoader, new CompilerConfiguration(scriptBaseClass: TemplateScript.name))
+        def engine = new GStringTemplateEngine()
+
+        templateDir.eachFile(FileType.FILES) {
+
+            def m = it.name =~ /(\w+)_(\w+)\.groovy/
+
+            if (m) {
+                def (_, template, category) = m[0]
+                groovyTemplates[template][category] = gcl.parseClass(it)
+                println "adding groovy template: $it"
+                return
+            }
+
+            m = it.name =~ /(\w+)_(\w+)\.template/
+
+            if (m) {
+                def (_, template, category) = m[0]
+                textTemplates[template][category] = engine.createTemplate(it)
+                println "adding text template: $it"
+                return
+            }
+
+            println "Skipping unknown file type : $it"
+        }
+    }
 
     @Override
     def visit(OpenHabElement element) {
-        println "Ignoring $element"
-    }
+        println "Handling $element.fullName ($element.template)"
 
-    def visit(Group group) {
+        int appliedGroovyTemplates = 0
+        int appliedTextTemplates = 0
 
-        output.println("Group $group.fullName ${surround('"', group.label,'"')} ${surround('<', group.icon, '>')} ${surround('(' ,group.allGroupsAsString, ')')}")
-    }
+        groovyTemplates[element.template].each { category, templateScript ->
+            println "  Groovy::$category"
+            appliedGroovyTemplates++
+            templateScript.newInstance(item: element, out: outputs[category]).run()
+        }
+        textTemplates[element.template].each { category, template ->
+            println "  Text::$category"
+            appliedTextTemplates++
+            outputs[category].println template.make(item: element)
+        }
 
-    def visit(Item item) {
-
-
-    }
-
-    def getOutput() {
-        output.toString()
-    }
-
-    static String surround(String before, String value, String after) {
-        if (value)
-            "$before$value$after"
-        else
-            ""
+        if (appliedGroovyTemplates + appliedTextTemplates == 0)
+            println "WARNING: No templates found for $element.fullName ($element.template)"
     }
 }

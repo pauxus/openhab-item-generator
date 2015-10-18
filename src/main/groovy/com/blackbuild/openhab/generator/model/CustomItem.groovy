@@ -7,5 +7,4 @@ class CustomItem extends Item {
 
     String definition
 
-
 }

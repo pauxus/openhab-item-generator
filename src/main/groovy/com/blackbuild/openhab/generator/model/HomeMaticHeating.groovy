@@ -7,5 +7,6 @@ class HomeMaticHeating extends Item {
     String thermostat
     Map<String, String> windows
     Map<String, String> valves
+
 }
 

@@ -17,11 +17,21 @@ abstract class OpenHabElement {
 
     String description
 
+    String template
+
     Group getParentGroup() {
         parentObject instanceof Group ? parentObject : null
     }
 
     abstract String getPrefix()
+
+    String getDefaultTemplate() {
+        this.getClass().simpleName
+    }
+
+    String getTemplate() {
+        template ?: defaultTemplate
+    }
 
     String getFullName() {
         "${parentGroup ? parentGroup.fullName + '_' : prefix}$safeName"
@@ -36,11 +46,11 @@ abstract class OpenHabElement {
     Map<String,String> properties
 
     List<Group> getAllGroups() {
-        return additionalGroups + parentGroup
+        return additionalGroups + (parentGroup ?: [])
     }
 
     String getAllGroupsAsString() {
-        return allGroups*.fullName.join(",")
+        return (allGroups*.fullName).join(",")
     }
 
     def accept(Visitor visitor) {

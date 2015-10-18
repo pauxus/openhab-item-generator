@@ -8,11 +8,6 @@ OpenHabConfig.create {
         group("DG") {
 
             items {
-                item("") {
-
-                }
-
-
                 item(HomeMaticHeating, "WZ") {
 
                 }

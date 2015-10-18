@@ -13,11 +13,17 @@ println "Writing to $outputDir"
 
 OpenHabConfig config = new GroovyShell().run(configFile, []) as OpenHabConfig
 
-SimpleItemsDumper v = new SimpleItemsDumper()
+SimpleItemsDumper v = new SimpleItemsDumper(templatesDir)
 
 config.accept(v)
 
-println v.output
+v.outputs.each { category, text ->
+    println "--------- $category ---------"
+    println text
+
+}
+
+
 
 
 

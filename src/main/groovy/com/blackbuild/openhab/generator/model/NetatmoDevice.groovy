@@ -3,12 +3,17 @@ package com.blackbuild.openhab.generator.model
 import com.blackbuild.groovy.configdsl.transform.DSL
 
 @DSL
-class NetatmoDevice extends Item {
+class NetatmoDevice extends BoundItem {
 
-    enum Type { BASE, OUTDOOR, INDOOR, RAIN }
+    static class Type {
+        static final String INDOOR = "Indoor"
+        static final String OUTDOOR = "Outdoor"
+        static final String BASE = "Base"
+        static final String RAIN = "Rain"
+    }
 
-    Type type
-
-    String address
-
+    @Override
+    String getDefaultTemplate() {
+        return "NA$type"
+    }
 }

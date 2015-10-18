@@ -1,0 +1,5 @@
+
+Group ${item.fullName} "$item.parentGroup.label $item.name" (${item.allGroupsAsString})
+Number ${item.fullName}_Temp     "Temperatur $item.parentGroup.label (NA) [%.1f °C]"  <temperature> (${item.fullName},gTemperatur,Netatmo)  {netatmo="$item.address#Temperature"}
+Number ${item.fullName}_Humidity "Feuchtigkeit $item.parentGroup.label (NA) [%d %%]"  <temperature> (${item.fullName},gFeuchtigkeit,Netatmo)  {netatmo="$item.address#Humidity"}
+Number ${item.fullName}_CO2      "CO2 $item.parentGroup.label [%d ppm]"  <temperature> (${item.fullName},gLuftqualitaet,Netatmo)  {netatmo="$item.address#CO2"}

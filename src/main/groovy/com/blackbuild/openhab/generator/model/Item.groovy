@@ -2,12 +2,15 @@ package com.blackbuild.openhab.generator.model
 import com.blackbuild.groovy.configdsl.transform.DSL
 
 @DSL
-class Item extends OpenHabElement{
-
-    String template
+abstract class Item extends OpenHabElement{
 
     @Override
     String getPrefix() {
         return 'i'
+    }
+
+    @Override
+    String getDescription() {
+        description ?: name
     }
 }

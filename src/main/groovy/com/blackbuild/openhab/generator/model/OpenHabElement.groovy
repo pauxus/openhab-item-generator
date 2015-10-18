@@ -34,7 +34,11 @@ abstract class OpenHabElement {
     }
 
     String getFullName() {
-        "${parentGroup ? parentGroup.fullName + '_' : prefix}$safeName"
+        "${prefix}$canonicalName"
+    }
+
+    String getCanonicalName() {
+        "${parentGroup ? parentGroup.canonicalName + '_' : ''}$safeName"
     }
 
     String getSafeName() {

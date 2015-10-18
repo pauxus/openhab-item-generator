@@ -24,6 +24,11 @@ class NamingSpec extends Specification {
                         group("Küche") {}
                     }
                 }.groups[0], "gFirstFloor_Kche"],
+                [Group.create("First Floor"){
+                    items {
+                        item(GenericItem, "Bla") {}
+                    }
+                }.items[0], "iFirstFloor_Bla"],
         ]
     }
 

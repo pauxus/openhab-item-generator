@@ -20,5 +20,5 @@ String  ${heating.fullName}_${safe(it.key)}_Error   "$it.key $heating.parentGrou
 """}
 
 heating.valves.each {out.println """
-Dimmer ${heating.fullName}_${safe(it.key)} "$it.key $heating.parentGroup.label [%d %%]" <heating> (${heating.fullName},gVentile) {homematic="address=${it.value}, channel=1, parameter=VALVE_STATE"}
+Dimmer ${heating.fullName}_${safe(it.key)}_pos "$it.key $heating.parentGroup.label [%d %%]" <heating> (${heating.fullName},gVentile) {homematic="address=${it.value}, channel=1, parameter=VALVE_STATE"}
 """}

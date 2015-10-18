@@ -4,8 +4,8 @@ def heating = item as HomeMaticHeating
 
 out.println """//-------------------------------------------- Heizung $heating.parentGroup.label
 Group ${heating.fullName} "$heating.parentGroup.label $heating.name" (${heating.allGroupsAsString})
-Number ${heating.fullName}_Temp      "Ist-Temperatur $heating.parentGroup.label [%.1f °C]"                           <temperature>  (${heating.fullName},gTemperatur)   {homematic="address=$heating.thermostat, channel=1, parameter=TEMPERATURE"}
-Number ${heating.fullName}_Set       "Soll-Temperatur $heating.parentGroup.label [%.1f °C]"                      <temperature>  (${heating.fullName},gTemperatur)   {homematic="address=$heating.thermostat, channel=2, parameter=SETPOINT"}
+Number ${heating.fullName}_Temp      "Ist-Temperatur $heating.parentGroup.label [%.1f Â°C]"                           <temperature>  (${heating.fullName},gTemperatur)   {homematic="address=$heating.thermostat, channel=1, parameter=TEMPERATURE"}
+Number ${heating.fullName}_Set       "Soll-Temperatur $heating.parentGroup.label [%.1f Â°C]"                      <temperature>  (${heating.fullName},gTemperatur)   {homematic="address=$heating.thermostat, channel=2, parameter=SETPOINT"}
 Number ${heating.fullName}_Humid     "Feuchtigkeit $heating.parentGroup.label [%d %%]"                           <water>        (${heating.fullName},gFeuchtigkeit) {homematic="address=$heating.thermostat, channel=1, parameter=HUMIDITY"}
 Number ${heating.fullName}_Rssi      "RSSI Thermostat $heating.parentGroup.label [SCALE(rssi.scale):%s]"         <signal>       (${heating.fullName},gWarnungen)    {homematic="address=$heating.thermostat, channel=0, parameter=RSSI_DEVICE"}
 Dimmer ${heating.fullName}_Rssi_perc "RSSI Thermostat $heating.parentGroup.label [%d %%]"                        <signal>       (${heating.fullName},gWarnungen)

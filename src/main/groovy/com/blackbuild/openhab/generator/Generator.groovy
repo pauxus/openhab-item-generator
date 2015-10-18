@@ -17,10 +17,10 @@ SimpleItemsDumper v = new SimpleItemsDumper(templatesDir)
 
 config.accept(v)
 
-v.outputs.each { category, text ->
-    println "--------- $category ---------"
-    println text
+outputDir.mkdirs()
 
+v.outputs.each { category, text ->
+    new File(outputDir, "${category}.txt").setText(text.toString(), "UTF-8")
 }
 
 

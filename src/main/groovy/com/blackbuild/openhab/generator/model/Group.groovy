@@ -19,5 +19,4 @@ class Group extends OpenHabElement {
         items.each {it.accept(visitor)}
         groups.each {it.accept(visitor)}
     }
-
 }

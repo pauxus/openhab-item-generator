@@ -1,8 +1,4 @@
 package com.blackbuild.openhab.generator.model
 
-scriptSuperClass(pattern: 'templates/.*\\.groovy', superClass: 'com.blackbuild.openhab.generator.TemplateScript')
+scriptSuperClass(pattern: 'generators/.*\\.groovy', superClass: 'com.blackbuild.openhab.generator.FileGenerator')
 
-//def ctx = context(pathRegexp: /.*\/templates\/.*groovy/)
-//contributor(ctx, {
-//    scriptSuperClass(pattern: /.*/, superClass: 'com.blackbuild.openhab.generator.model.TemplateBaseClass')
-//})

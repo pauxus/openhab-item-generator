@@ -61,4 +61,8 @@ abstract class OpenHabElement {
         visitor.visit(this)
     }
 
+    @Override
+    String toString() {
+        return "${getClass().simpleName}: $name ($fullName)"
+    }
 }

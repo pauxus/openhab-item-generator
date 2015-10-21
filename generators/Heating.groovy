@@ -1,8 +1,8 @@
-import com.blackbuild.openhab.generator.model.HomeMaticHeating
+import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 
-into("homematic.items") { out ->
+into("items/homematic.items") { out ->
 
-    config.allElements(HomeMaticHeating).each { heating ->
+    config.all(HomeMaticHeating).each { heating ->
         out.println """//-------------------------------------------- Heizung $heating.parentGroup.label
 Group ${heating.fullName} "$heating.parentGroup.label $heating.name" (${heating.allGroupsAsString})
 Number ${heating.fullName}_Temp      "Ist-Temperatur $heating.parentGroup.label [%.1f °C]"                           <temperature>  (${heating.fullName},gTemperatur)   {homematic="address=$heating.thermostat, channel=1, parameter=TEMPERATURE"}
@@ -15,13 +15,13 @@ String ${heating.fullName}_Pending   "Pending Thermostat $heating.parentGroup.la
 """
 
 heating.windows.each {out.println """
-String  ${heating.fullName}_${asIdentifier(it.key)}_Kontakt "$it.key $heating.parentGroup.label [MAP(window.map):%s]"              <contact> (${heating.fullName},gFenster)   {homematic="address=${it.value}, channel=1, parameter=STATE"}
-String  ${heating.fullName}_${asIdentifier(it.key)}_LowBat  "$it.key $heating.parentGroup.label Batterie [MAP(lowbat.map):%s]"     <battery> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=LOWBAT"}
-String  ${heating.fullName}_${asIdentifier(it.key)}_Error   "$it.key $heating.parentGroup.label Sabotage [MAP(MDirError.map):%s]"  <contact> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=ERROR"}
+String  ${heating.fullName}_Window_${asIdentifier(it.key)}_Kontakt "$it.key $heating.parentGroup.label [MAP(window.map):%s]"              <contact> (${heating.fullName},gFenster)   {homematic="address=${it.value}, channel=1, parameter=STATE"}
+String  ${heating.fullName}_Window_${asIdentifier(it.key)}_LowBat  "$it.key $heating.parentGroup.label Batterie [MAP(lowbat.map):%s]"     <battery> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=LOWBAT"}
+String  ${heating.fullName}_Window_${asIdentifier(it.key)}_Error   "$it.key $heating.parentGroup.label Sabotage [MAP(MDirError.map):%s]"  <contact> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=ERROR"}
 """}
 
 heating.valves.each {out.println """
-Dimmer ${heating.fullName}_${asIdentifier(it.key)}_pos "$it.key $heating.parentGroup.label [%d %%]" <heating> (${heating.fullName},gVentile) {homematic="address=${it.value}, channel=1, parameter=VALVE_STATE"}
+Dimmer ${heating.fullName}_Valve_${asIdentifier(it.key)}_pos "$it.key $heating.parentGroup.label [%d %%]" <heating> (${heating.fullName},gVentile) {homematic="address=${it.value}, channel=1, parameter=VALVE_STATE"}
 """}
     }
 }

@@ -22,10 +22,19 @@ class OpenHabConfig {
         return visitor.result
     }
 
-    def <T extends OpenHabElement> List<T> allElements(Class<T> type) {
+    def <T extends OpenHabElement> T find(Class<T> type, String name) {
+        return all(type).find { it.name == name }
+    }
+
+
+    def <T extends OpenHabElement> List<T> all(Class<T> type) {
         def visitor = new Collector(type)
         accept(visitor)
         return visitor.result
+    }
+
+    def <T extends OpenHabElement> Map<String, T> allAsMap(Class<T> type) {
+        all(type).collectEntries { [it.name, it]}
     }
 
     static class Collector implements Visitor {

@@ -1,4 +1,4 @@
-import com.blackbuild.openhab.generator.model.HomeMaticHeating
+import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 import com.blackbuild.openhab.generator.model.OpenHabConfig
 
 OpenHabConfig.create {

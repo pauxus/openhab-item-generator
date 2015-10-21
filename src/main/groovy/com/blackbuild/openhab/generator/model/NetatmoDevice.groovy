@@ -11,9 +11,4 @@ class NetatmoDevice extends BoundItem {
         static final String BASE = "Base"
         static final String RAIN = "Rain"
     }
-
-    @Override
-    String getDefaultTemplate() {
-        return "NA$type"
-    }
 }

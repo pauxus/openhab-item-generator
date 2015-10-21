@@ -17,21 +17,13 @@ abstract class OpenHabElement {
 
     String description
 
-    String template
+    Map<String, Object> infos
 
     Group getParentGroup() {
         parentObject instanceof Group ? parentObject : null
     }
 
     abstract String getPrefix()
-
-    String getDefaultTemplate() {
-        this.getClass().simpleName
-    }
-
-    String getTemplate() {
-        template ?: defaultTemplate
-    }
 
     String getFullName() {
         "${prefix}$canonicalName"

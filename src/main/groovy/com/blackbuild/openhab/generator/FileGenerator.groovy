@@ -55,6 +55,8 @@ abstract class FileGenerator extends Script {
     }
 
     private static void insertIntoFile(File file, String text, String marker) {
+        if (!file.parentFile.isDirectory())
+            file.parentFile.mkdirs()
         List<String> lines = file.isFile() ? file.readLines("UTF-8") : []
 
         createBackupFile(file)

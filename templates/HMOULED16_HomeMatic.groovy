@@ -1,4 +1,4 @@
-import com.blackbuild.openhab.generator.model.HomeMaticItem
+import com.blackbuild.openhab.generator.model.homematic.HomeMaticItem
 
 def display = item as HomeMaticItem
 

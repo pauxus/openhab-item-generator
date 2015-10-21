@@ -1,5 +1,5 @@
-import com.blackbuild.openhab.generator.model.HomeMaticHeating
-import com.blackbuild.openhab.generator.model.HomeMaticItem
+import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
+import com.blackbuild.openhab.generator.model.homematic.HomeMaticItem
 import com.blackbuild.openhab.generator.model.NetatmoDevice
 import com.blackbuild.openhab.generator.model.Room
 

@@ -29,6 +29,22 @@ abstract class OpenHabElement {
         "${prefix}$canonicalName"
     }
 
+    String getDescription() {
+        description ?: name
+    }
+
+    String getLabelString() {
+        label ? "\"$label\"" : ''
+    }
+
+    String getIconString() {
+        icon ? "<$icon>" : ''
+    }
+
+    String getGroupsString() {
+        allGroups ? "(${(allGroups*.fullName).join(',')})" : ''
+    }
+
     String getCanonicalName() {
         "${parentGroup ? parentGroup.canonicalName + '_' : ''}$safeName"
     }

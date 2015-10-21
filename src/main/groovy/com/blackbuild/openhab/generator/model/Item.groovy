@@ -9,8 +9,4 @@ abstract class Item extends OpenHabElement{
         return 'i'
     }
 
-    @Override
-    String getDescription() {
-        description ?: name
-    }
 }

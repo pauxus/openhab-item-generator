@@ -74,7 +74,7 @@ abstract class FileGenerator extends Script {
             if (indexOfBlockEnd < 0)
                 throw new IllegalStateException("Generator $file.name has 'GENERATED $marker', but no matchin 'END $marker'")
 
-            before = lines[0..(indexOfBlockBegin - 1)]
+            before = indexOfBlockBegin > 0 ? lines[0..(indexOfBlockBegin - 1)] : []
             after = indexOfBlockEnd + 1 == lines.size() ? [] : lines[(indexOfBlockEnd + 1)..-1]
         }
 

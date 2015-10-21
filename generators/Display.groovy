@@ -4,7 +4,7 @@ into("items/homematic.items") { out ->
 
     config.all(HMLedDisplay).each { display ->
         out.println """//-------------------------------------------- Display $display.description
-Group $display.fullName "${display.label ?: $display.name}" (${display.allGroupsAsString})"""
+Group $display.fullName $display.labelString $display.iconString $display.groupsString"""
 
         if (display.leftElements) (1..display.leftElements.size()).each {
             out.println """String ${display.fullName}_L${it} {homematic="address=$display.address, channel=$it, parameter=LED_STATUS"}"""

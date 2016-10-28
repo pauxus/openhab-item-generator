@@ -9,4 +9,9 @@ class HMLedDisplay extends HomeMaticItem {
 
     List<OpenHabElement> rightElements
 
+    Map<String, OpenHabElement> getAllElements() {
+        leftElements.indexed(1).collectEntries { ["${this.fullName}_L${it.key}", it.value] } +
+        rightElements.indexed(1).collectEntries { ["${this.fullName}_R${it.key}", it.value] }
+    }
+
 }

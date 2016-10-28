@@ -9,5 +9,6 @@ class HomeMaticHeating extends Item {
     Map<String, String> windows
     Map<String, String> valves
 
+    List<Float> fixValues
 }
 

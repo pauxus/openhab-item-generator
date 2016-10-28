@@ -96,5 +96,4 @@ abstract class FileGenerator extends Script {
     Template getTemplate(String name = getClass().simpleName + ".template") {
         templateEngine.createTemplate(new File(generatorDir, name))
     }
-
 }

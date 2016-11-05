@@ -5,4 +5,8 @@ import com.blackbuild.groovy.configdsl.transform.DSL
 @DSL
 class Room extends Group {
 
+    @Override
+    String getPrefix() {
+        return "r"
+    }
 }

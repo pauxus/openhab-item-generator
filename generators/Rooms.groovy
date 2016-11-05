@@ -2,17 +2,18 @@ import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticItem
 import com.blackbuild.openhab.generator.model.NetatmoDevice
 import com.blackbuild.openhab.generator.model.Room
+import com.blackbuild.openhab.generator.model.homematic.HomeMaticThing
 
 into("sitemaps/default.sitemap") { out ->
 
     config.all(Room).each { room ->
 
-        if (!room.items) return
+        if (!room.things) return
 
         out.println """
 Text label="$room.label" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
 
-        HomeMaticHeating heating = room.items.find { it instanceof HomeMaticHeating } as HomeMaticHeating
+        HomeMaticHeating heating = room.groups.find { it instanceof HomeMaticHeating } as HomeMaticHeating
         if (heating) {
             out.println """    //-------------------- Heating
     Text item=${heating.fullName}_Temp  label="Ist-Temperatur [%.1f °C]"
@@ -31,7 +32,7 @@ Text label="$room.label" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
             }
         }
 
-        HomeMaticItem thermostat = room.items.find {
+        HomeMaticThing thermostat = room.things.find {
             it instanceof HomeMaticItem && it.type == "HMWDS40THI"
         } as HomeMaticItem
         if (thermostat) {

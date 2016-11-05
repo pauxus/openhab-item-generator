@@ -3,7 +3,7 @@ import com.blackbuild.groovy.configdsl.transform.DSL
 import com.blackbuild.openhab.generator.model.OpenHabElement
 
 @DSL
-class HMLedDisplay extends HomeMaticItem {
+class HMLedDisplay extends HomeMaticThing {
 
     List<OpenHabElement> leftElements
 

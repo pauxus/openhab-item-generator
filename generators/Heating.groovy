@@ -1,27 +1,44 @@
+import com.blackbuild.openhab.generator.Templates.HeatingTemplate
+import com.blackbuild.openhab.generator.Templates.ItemType
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 
 into("items/homematic.items") { out ->
 
-    config.all(HomeMaticHeating).each { heating ->
-        out.println """//-------------------------------------------- Heizung $heating.parentGroup.label
-Group ${heating.fullName} "$heating.parentGroup.label $heating.name" (${heating.allGroupsAsString})
-Number ${heating.fullName}_Temp      "Ist-Temperatur $heating.parentGroup.label [%.1f °C]"                           <temperature>  (${heating.fullName},gTemperatur)   {homematic="address=$heating.thermostat, channel=1, parameter=TEMPERATURE"}
-Number ${heating.fullName}_Set       "Soll-Temperatur $heating.parentGroup.label [%.1f °C]"                      <temperature>  (${heating.fullName},gTemperatur)   {homematic="address=$heating.thermostat, channel=2, parameter=SETPOINT"}
-Number ${heating.fullName}_Humid     "Feuchtigkeit $heating.parentGroup.label [%d %%]"                           <water>        (${heating.fullName},gFeuchtigkeit) {homematic="address=$heating.thermostat, channel=1, parameter=HUMIDITY"}
-Number ${heating.fullName}_Rssi      "RSSI Thermostat $heating.parentGroup.label [SCALE(rssi.scale):%s]"         <signal>       (${heating.fullName},gWarnungen)    {homematic="address=$heating.thermostat, channel=0, parameter=RSSI_DEVICE"}
-Dimmer ${heating.fullName}_Rssi_perc "RSSI Thermostat $heating.parentGroup.label [%d %%]"                        <signal>       (${heating.fullName},gWarnungen)
-String ${heating.fullName}_LowBat    "Batterie Thermostat $heating.parentGroup.label [MAP(lowbat.map):%s]"       <battery>      (${heating.fullName},gWarnungen)    {homematic="address=$heating.thermostat, channel=0, parameter=LOWBAT"}
-String ${heating.fullName}_Pending   "Pending Thermostat $heating.parentGroup.label [MAP(configpending.map):%s]" <water>        (${heating.fullName},gWarnungen)    {homematic="address=$heating.thermostat, channel=0, parameter=CONFIG_PENDING"}
-"""
+    config.all(HomeMaticHeating).each { rawHeating ->
+        def heating = new HeatingTemplate(rawHeating)
 
-heating.windows.each {out.println """
-String  ${heating.fullName}_Window_${asIdentifier(it.key)}_Kontakt "$it.key $heating.parentGroup.label [MAP(window.map):%s]"              <contact> (${heating.fullName},gFenster)   {homematic="address=${it.value}, channel=1, parameter=STATE"}
-String  ${heating.fullName}_Window_${asIdentifier(it.key)}_LowBat  "$it.key $heating.parentGroup.label Batterie [MAP(lowbat.map):%s]"     <battery> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=LOWBAT"}
-String  ${heating.fullName}_Window_${asIdentifier(it.key)}_Error   "$it.key $heating.parentGroup.label Sabotage [MAP(MDirError.map):%s]"  <contact> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=ERROR"}
-"""}
+        out.println "//-------------------------------------------- Heizung $heating.parentGroup.label"
 
-heating.valves.each {out.println """
-Dimmer ${heating.fullName}_Valve_${asIdentifier(it.key)}_pos "$it.key $heating.parentGroup.label [%d %%]" <heating> (${heating.fullName},gVentile) {homematic="address=${it.value}, channel=1, parameter=VALVE_STATE"}
-"""}
+        out.println heating.groupDefinition
+
+        heating.thermostat.with {
+            out.println createItem(ItemType.Number, "Temp", "Ist-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur' ], ["CurrentTemperature"], "1#TEMPERATURE")
+            out.println createItem(ItemType.Number, "Set", "Soll-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur' ], ["CurrentHumidity"], "2#SETPOINT")
+            out.println createItem(ItemType.Number, "Humid", "Feuchtigkeit $heating.parentGroup.label [%d %%]", "water", [ heating.fullName, 'gFeuchtigkeit' ], ["TargetTemperature"], "1#HUMIDITY")
+
+            out.println createItem(ItemType.Number, "Rssi", "RSSI Thermostat $heating.parentGroup.label [SCALE(rssi.scale):%s]", "signal", [ heating.fullName, 'gWarnungen' ], null, "0#RSSI_DEVICE")
+            out.println createItem(ItemType.Dimmer, "Rssi_perc", "RSSI Thermostat $heating.parentGroup.label [%d %%]", "signal", [ heating.fullName, 'gWarnungen' ])
+
+            out.println createItem(ItemType.String, "LowBat", "Batterie Thermostat $heating.parentGroup.label [MAP(lowbat.map):%s]", "battery", [ heating.fullName, 'gWarnungen' ], null, "0#LOWBAT")
+            out.println createItem(ItemType.String, "Pending", "Pending Thermostat $heating.parentGroup.label [MAP(configpending.map):%s", "error", [ heating.fullName, 'gWarnungen' ], null, "0#LOWBAT")
+        }
+
+        heating.windows.each {
+            it.with {
+                out.println createItem(ItemType.String, "Kontakt", "$name $heating.parentGroup.label [MAP(window.map):%s]", "temperature", [ heating.fullName, 'gFenster' ], null, "1#STATE")
+                out.println createItem(ItemType.String, "LowBat", "$it.name $heating.parentGroup.label Batterie [MAP(lowbat.map):%s]", "battery", [ heating.fullName, 'gWarnungen' ], null, "1#LOWBAT")
+//String  ${heating.fullName}_Window_${asIdentifier(it.name)}_Error   "$it.name $heating.parentGroup.label Sabotage [MAP(MDirError.map):%s]"  <contact> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=ERROR"}
+            }
+        }
+
+        heating.valves.each {
+            it.with {
+                out.println createItem(ItemType.Dimmer, "Pos", "$it.name $heating.parentGroup.label [%d %%]", "heating", [ heating.fullName, 'gVentile' ], null, "1#VALVE_STATE")
+            }
+        }
+
+        out.println ""
     }
 }
+
+

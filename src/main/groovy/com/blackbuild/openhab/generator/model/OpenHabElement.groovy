@@ -23,6 +23,14 @@ abstract class OpenHabElement {
         parentObject instanceof Group ? parentObject : null
     }
 
+    def <T> T getParentOfType(Class<T> type) {
+        return type.isInstance(parentObject) ? parentObject : parentObject?.getParentOfType(type)
+    }
+
+    OpenHabConfig getConfig() {
+        return getParentOfType(OpenHabConfig)
+    }
+
     abstract String getPrefix()
 
     String getFullName() {
@@ -39,10 +47,6 @@ abstract class OpenHabElement {
 
     String getIconString() {
         icon ? "<$icon>" : ''
-    }
-
-    String getGroupsString() {
-        allGroups ? "(${(allGroups*.fullName).join(',')})" : ''
     }
 
     String getCanonicalName() {

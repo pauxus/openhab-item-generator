@@ -5,7 +5,7 @@ import com.blackbuild.openhab.generator.Visitor
 @DSL
 class Group extends OpenHabElement {
 
-    List<Item> items
+    List<Thing> things
     List<Group> groups
 
     @Override
@@ -16,7 +16,7 @@ class Group extends OpenHabElement {
     def accept(Visitor visitor) {
         visitor.visit(this)
 
-        items.each {it.accept(visitor)}
+        things.each {it.accept(visitor)}
         groups.each {it.accept(visitor)}
     }
 }

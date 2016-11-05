@@ -2,18 +2,19 @@ package com.blackbuild.openhab.generator.model
 
 import com.blackbuild.groovy.configdsl.transform.DSL
 import com.blackbuild.openhab.generator.Visitor
+import com.blackbuild.openhab.generator.model.bridges.Bridge
 
 
 @DSL
 class OpenHabConfig {
 
-    List<Item> items
+    List<Bridge> bridges
 
-    List<Group> groups
+    List<OpenHabElement> elements
+
 
     def accept(Visitor visitor) {
-        items.each {it.accept(visitor)}
-        groups.each {it.accept(visitor)}
+        elements.each {it.accept(visitor)}
     }
 
     List<OpenHabElement> allElements() {

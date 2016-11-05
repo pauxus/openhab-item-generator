@@ -21,14 +21,14 @@ class NamingSpec extends Specification {
                 }.groups[0], "gFirstFloor_Bath"],
                 [Group.create("First Floor"){
                     groups {
-                        group("Küche") {}
+                        group("Kï¿½che") {}
                     }
                 }.groups[0], "gFirstFloor_Kche"],
                 [Group.create("First Floor"){
                     items {
-                        item(GenericItem, "Bla") {}
+                        item(GenericThing, "Bla") {}
                     }
-                }.items[0], "iFirstFloor_Bla"],
+                }.things[0], "iFirstFloor_Bla"],
         ]
     }
 

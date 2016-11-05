@@ -1,11 +1,12 @@
 package com.blackbuild.openhab.generator.model
-
 import com.blackbuild.groovy.configdsl.transform.DSL
 
 @DSL
-class GenericItem extends Item {
+abstract class Thing extends OpenHabElement {
 
-    String type
+    @Override
+    String getPrefix() {
+        return 'i'
+    }
 
-    String binding
 }

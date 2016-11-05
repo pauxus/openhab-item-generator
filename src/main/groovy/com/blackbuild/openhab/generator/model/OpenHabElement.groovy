@@ -20,7 +20,7 @@ abstract class OpenHabElement {
     Map<String, Object> infos
 
     Group getParentGroup() {
-        parentObject instanceof Group ? parentObject : null
+        return getParentOfType(Group)
     }
 
     def <T> T getParentOfType(Class<T> type) {

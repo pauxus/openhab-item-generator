@@ -27,6 +27,9 @@ class OpenHabConfig {
         return all(type).find { it.name == name }
     }
 
+    def <T> T getParentOfType(Class<T> type) {
+        return null
+    }
 
     def <T extends OpenHabElement> List<T> all(Class<T> type) {
         def visitor = new Collector(type)

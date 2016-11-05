@@ -17,7 +17,6 @@ HomeMaticHeating.createTemplate {
 
 OpenHabConfig.create {
 
-
     bridges {
 
         bridge(NetatmoBridge, "na") {
@@ -33,31 +32,29 @@ OpenHabConfig.create {
 
     }
 
-    groups {
+    elements {
 
-        group(alle)
+        element(alle)
 
-        group("WB") {
+        element(Group, "WB") {
             label "Wohnbereich"
             additionalGroups {
                 additionalGroup alle
             }
 
 
-            groups {
-                group(Room, "REB") {
+            elements {
+                element(Room, "REB") {
 
                     label "Rebecca"
 
-                    things {
-                        thing(NetatmoThing, "Rebecca") {
+                    elements {
+                        element(NetatmoThing, "Rebecca") {
                             equipmentId "03:00:00:01:3a:80"
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
                         }
-                    }
-                    groups {
-                        group(HomeMaticHeating, "Heating") {
+                        element(HomeMaticHeating, "Heating") {
                             thermostat { serial "HEQ0509781"; type "HM-CC-TC" }
                             window("Südfenster") { serial "JEQ0719115"; type "HM-Sec-SCo" }
                             valve("Heizkörper") { serial "HEQ0137974"; type "HM-CC-VD" }
@@ -66,30 +63,26 @@ OpenHabConfig.create {
                 }
 
 
-                group(Room, "MIC") {
+                element(Room, "MIC") {
                     label "Michael"
 
-                    things {
-                        thing(NetatmoThing, "NetAtmo") {
+                    elements {
+                        element(NetatmoThing, "NetAtmo") {
                             equipmentId "03:00:00:01:44:a0"
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
                         }
-                    }
-                    groups {
-                        group(HomeMaticHeating, "Heating") {
+                        element(HomeMaticHeating, "Heating") {
                             thermostat { serial "IEQ0170661"; type "HM-CC-TC" }
                             window("Nordfenster") { serial "IEQ0032480"; type "HM-Sec-SC" }
                             valve("Heizkörper") { serial "IEQ0172061"; type "HM-CC-VD" }
                         }
                     }
                 }
-                group(Room, "BAD") {
+                element(Room, "BAD") {
                     label "Badezimmer"
-                    things {
-                    }
-                    groups {
-                        group(HomeMaticHeating, "Heating") {
+                    elements {
+                        element(HomeMaticHeating, "Heating") {
                             thermostat { serial "HEQ0079972"; type "HM-CC-TC" }
                             window("Fenster") { serial "HEQ0106396"; type "HM-Sec-SC" }
                             valve("Heizkörper") { serial "FEQ0069155"; type "HM-CC-VD" }
@@ -97,17 +90,17 @@ OpenHabConfig.create {
                     }
                 }
 
-                group(Room, "WOZ") {
+                element(Room, "WOZ") {
                     label "Wohn-/Esszimmer"
 
-                    things {
-//                        thing(HomeMaticItem, "Display") {
+                    elements {
+//                        element(HomeMaticItem, "Display") {
 //                            type "HMOULED16"
 //                            address "JEQ0218880"
 //                        }
                     }
-                    groups {
-                        group(HomeMaticHeating, "Heating") {
+                    elements {
+                        element(HomeMaticHeating, "Heating") {
                             thermostat { serial "HEQ0079972"; type "HM-CC-TC" }
                             window("WZ") { serial "IEQ0206565"; type "HM-Sec-RHS" }
                             window("EZ") { serial "GEQ0128784"; type "HM-Sec-RHS" }
@@ -116,26 +109,22 @@ OpenHabConfig.create {
                         }
                     }
                 }
-                group(Room, "KUE") {
+                element(Room, "KUE") {
                     label "Küche"
                 }
-                group(Room, "SPS") {
+                element(Room, "SPS") {
                     label "Speisekammer"
-                    things {
-                    }
-                    groups {
-                        thing(HomeMaticThing, "Thermostat") {
+                    elements {
+                        element(HomeMaticThing, "Thermostat") {
                             type "HM-WDS40-TH-I"
                             serial "JEQ0064360"
                         }
                     }
                 }
-                group(Room, "SZI") {
+                element(Room, "SZI") {
                     label "Schlafzimmer"
-                    things {
-                    }
-                    groups {
-                        group(HomeMaticHeating, "Heating") {
+                    elements {
+                        element(HomeMaticHeating, "Heating") {
 
                             thermostat { serial "IEQ0170436"; type "HM-CC-TC" }
                             window("Südfenster") { serial "IEQ0204643"; type "HM-Sec-SC" }
@@ -143,26 +132,26 @@ OpenHabConfig.create {
                         }
                     }
                 }
-                group(Room, "TRH") {
+                element(Room, "TRH") {
                     label "Treppenhaus"
                 }
-                group(Room, "GWC") {
+                element(Room, "GWC") {
                     label "Gästetoilette"
                 }
             }
         }
 
 
-        group(Room, "DG") {
+        element(Room, "DG") {
             label "Büro"
             additionalGroups {
                 additionalGroup alle
             }
 
-            things {
+            elements {
             }
-            groups {
-                group(HomeMaticHeating, "Heating") {
+            elements {
+                element(HomeMaticHeating, "Heating") {
                     thermostat { serial "HEQ0145776"; type "HM-CC-TC" }
                     window("Rechts") { serial "HEQ0106327"; type "HM-Sec-SC" }
                     valve("Links") { serial "HEQ0513531"; type "HM-CC-VD" }
@@ -170,45 +159,45 @@ OpenHabConfig.create {
                 }
             }
         }
-        group("UG") {
+        element(Group, "UG") {
             additionalGroups {
                 additionalGroup alle
             }
             label "Keller"
 
-            groups {
+            elements {
 
-                group(Room, "HZG") {
+                element(Room, "HZG") {
                     label "Heizungskeller"
-                    things {
-                        thing(HomeMaticThing, "Thermostat") {
+                    elements {
+                        element(HomeMaticThing, "Thermostat") {
                             type "HMWDS40THI"
                             serial "JEQ0218038"
                         }
                     }
                 }
-                group(Room, "VOR") {
+                element(Room, "VOR") {
                     label "Vorratskeller"
 
-                    things {
-                        thing(HomeMaticThing, "Thermostat") {
+                    elements {
+                        element(HomeMaticThing, "Thermostat") {
                             type "HMWDS40THI"
                             serial "JEQ0064575"
                         }
                     }
 
                 }
-                group(Room, "LGR") {
+                element(Room, "LGR") {
                     label "Lagerkeller"
                 }
-                group(Room, "WAK") {
+                element(Room, "WAK") {
                     label "Waschküche"
-                    things {
-                        thing(HomeMaticThing, "Trockner") {
+                    elements {
+                        element(HomeMaticThing, "Trockner") {
                             type "HM-ES-PMSw1-Pl"
                             serial "MEQ0107141"
                         }
-                        thing(HomeMaticThing, "Waschmaschine") {
+                        element(HomeMaticThing, "Waschmaschine") {
                             type "HM-ES-PMSw1-Pl"
                             serial "LEQ0530758"
                         }
@@ -217,7 +206,7 @@ OpenHabConfig.create {
             }
         }
 
-        group("OUT") {
+        element(Group, "OUT") {
             label "Draussen"
             additionalGroups {
                 additionalGroup alle
@@ -226,8 +215,8 @@ OpenHabConfig.create {
     }
 
 
-    things {
-//        thing(HMLedDisplay, "Display") {
+    elements {
+//        element(HMLedDisplay, "Display") {
 //            serial "JEQ0218880"
 //            leftElements {
 //                leftElement find(Room, "DG")

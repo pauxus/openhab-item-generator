@@ -30,7 +30,7 @@ def class HeatingTemplate {
 }
 
 @TupleConstructor
-abstract class HomematicGroupTemplate extends AbstractTemplate {
+class HomematicGroupTemplate extends AbstractTemplate {
     @Delegate
     HomeMaticThing thing
 }

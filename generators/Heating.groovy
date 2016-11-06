@@ -13,8 +13,8 @@ into("items/homematic.items") { out ->
 
         heating.thermostat.with {
             out.println createItem(ItemType.Number, "Temp", "Ist-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur', 'gChart' ], ["CurrentTemperature"], "1#TEMPERATURE")
-            out.println createItem(ItemType.Number, "Set", "Soll-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur', 'gChart' ], ["CurrentHumidity"], "2#SETPOINT")
-            out.println createItem(ItemType.Number, "Humid", "Feuchtigkeit $heating.parentGroup.label [%d %%]", "water", [ heating.fullName, 'gFeuchtigkeit', 'gChart' ], ["TargetTemperature"], "1#HUMIDITY")
+            out.println createItem(ItemType.Number, "Set", "Soll-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur', 'gChart' ], ["TargetTemperature"], "2#SETPOINT")
+            out.println createItem(ItemType.Number, "Humid", "Feuchtigkeit $heating.parentGroup.label [%d %%]", "water", [ heating.fullName, 'gFeuchtigkeit', 'gChart' ], ["CurrentHumidity"], "1#HUMIDITY")
 
             out.println createItem(ItemType.Number, "Mode", "Dummy Modus $heating.parentGroup.label [%s]", null, [ heating.fullName ], ["homekit:HeatingCoolingMode"])
 
@@ -28,7 +28,7 @@ into("items/homematic.items") { out ->
         heating.windows.each {
             it.with {
                 out.println createItem(ItemType.Contact, "Kontakt", "$name $heating.parentGroup.label [MAP(window.map):%s]", "window", [ heating.fullName, 'gFenster', 'gChart' ], null, "1#STATE")
-                out.println createItem(ItemType.String, "LowBat", "$it.name $heating.parentGroup.label Batterie [MAP(lowbat.map):%s]", "battery", [ heating.fullName, 'gWarnungen' ], null, "1#LOWBAT")
+                out.println createItem(ItemType.String, "LowBat", "$it.name $heating.parentGroup.label Batterie [MAP(lowbat.map):%s]", "battery", [ heating.fullName, 'gWarnungen' ], null, "1#CONFIG_PENDING")
 //String  ${heating.fullName}_Window_${asIdentifier(it.name)}_Error   "$it.name $heating.parentGroup.label Sabotage [MAP(MDirError.map):%s]"  <contact> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=ERROR"}
             }
         }

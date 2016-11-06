@@ -19,6 +19,10 @@ class HomeMaticThing extends BridgedThing {
         return serial
     }
 
+    String getRawType() {
+        return type
+    }
+
     String getType() {
         return bridge.homegear ? "HG-$type" : type
     }

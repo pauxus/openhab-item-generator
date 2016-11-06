@@ -11,16 +11,16 @@ def class HeatingTemplate {
     @Delegate
     HomeMaticHeating thing
 
-    ThermostatTemplate getThermostat() {
-        new ThermostatTemplate(thing.thermostat)
+    HomematicGroupTemplate getThermostat() {
+        new HomematicGroupTemplate(thing.thermostat)
     }
 
-    List<ValveTemplate> getValves() {
-        thing.valves.collect{ new ValveTemplate(it) }
+    List<CompositeMemberTemplate> getValves() {
+        thing.valves.collect{ new CompositeMemberTemplate(it) }
     }
 
-    List<WindowTemplate> getWindows() {
-        thing.windows.collect{ new WindowTemplate(it) }
+    List<CompositeMemberTemplate> getWindows() {
+        thing.windows.collect{ new CompositeMemberTemplate(it) }
     }
 
     String getGroupDefinition() {
@@ -36,18 +36,7 @@ class HomematicGroupTemplate extends AbstractTemplate {
 }
 
 @InheritConstructors
-class ThermostatTemplate extends HomematicGroupTemplate {
-
-
-}
-@InheritConstructors
-class ValveTemplate extends HomematicGroupTemplate {
-    def createItem(ItemType type, String suffix, String label, String icon, List<String> groups, List<String> tags = [], String channel = null) {
-        super.createItem(type, "${safeName}_$suffix", label, icon, groups, tags, channel)
-    }
-}
-@InheritConstructors
-class WindowTemplate extends HomematicGroupTemplate {
+class CompositeMemberTemplate extends HomematicGroupTemplate {
     def createItem(ItemType type, String suffix, String label, String icon, List<String> groups, List<String> tags = [], String channel = null) {
         super.createItem(type, "${safeName}_$suffix", label, icon, groups, tags, channel)
     }

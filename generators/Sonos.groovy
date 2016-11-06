@@ -1,38 +1,31 @@
 import com.blackbuild.openhab.generator.model.sonos.SonosPlayer
-import com.blackbuild.openhab.generator.templates.ItemType
+import templates.ItemType
+import templates.SonosPlayerTemplate
 
 into("items/sonos.items") { out ->
 
-    config.all(SonosPlayer).each { player ->
+    config.all(SonosPlayer).each { rawPlayer ->
+        def player = new SonosPlayerTemplate(rawPlayer)
 
-        out.println "//-------------------------------------------- Heizung $heating.parentGroup.label"
+        out.println "//-------------------------------------------- Sonos $player.parentGroup.label"
 
-        out.println heating.groupDefinition
+        out.println player.groupDefinition
 
-        heating.thermostat.with {
-            out.println createItem(ItemType.Number, "Temp", "Ist-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur' ], ["CurrentTemperature"], "1#TEMPERATURE")
-            out.println createItem(ItemType.Number, "Set", "Soll-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur' ], ["CurrentHumidity"], "2#SETPOINT")
-            out.println createItem(ItemType.Number, "Humid", "Feuchtigkeit $heating.parentGroup.label [%d %%]", "water", [ heating.fullName, 'gFeuchtigkeit' ], ["TargetTemperature"], "1#HUMIDITY")
+        player.sonos.with {
+            out.println createItem(ItemType.Player, "Control", "Sonos $player.parentGroup.label Steuerung", null, [player.fullName], null, "control")
+            out.println createItem(ItemType.Dimmer, "Volume", "Sonos $player.parentGroup.label Lautstärke", null, [player.fullName], null, "volume")
+            out.println createItem(ItemType.String, "Album", "Sonos $player.parentGroup.label Album", null, [player.fullName], null, "currentalbum")
+            out.println createItem(ItemType.String, "Artist", "Sonos $player.parentGroup.label Interpret", null, [player.fullName], null, "currentartist")
+            out.println createItem(ItemType.String, "Title", "Sonos $player.parentGroup.label Titel", null, [player.fullName], null, "currenttitle")
 
-            out.println createItem(ItemType.Number, "Rssi", "RSSI Thermostat $heating.parentGroup.label [SCALE(rssi.scale):%s]", "signal", [ heating.fullName, 'gWarnungen' ], null, "0#RSSI_DEVICE")
-            out.println createItem(ItemType.Dimmer, "Rssi_perc", "RSSI Thermostat $heating.parentGroup.label [%d %%]", "signal", [ heating.fullName, 'gWarnungen' ])
-
-            out.println createItem(ItemType.String, "LowBat", "Batterie Thermostat $heating.parentGroup.label [MAP(lowbat.map):%s]", "battery", [ heating.fullName, 'gWarnungen' ], null, "0#LOWBAT")
-            out.println createItem(ItemType.String, "Pending", "Pending Thermostat $heating.parentGroup.label [MAP(configpending.map):%s", "error", [ heating.fullName, 'gWarnungen' ], null, "0#LOWBAT")
+            out.println createItem(ItemType.Switch, "Save", "Sonos $player.parentGroup.label Save", null, [player.fullName], null, "save")
+            out.println createItem(ItemType.Switch, "Restore", "Sonos $player.parentGroup.label Restore", null, [player.fullName], null, "restore")
         }
 
-        heating.windows.each {
-            it.with {
-                out.println createItem(ItemType.String, "Kontakt", "$name $heating.parentGroup.label [MAP(window.map):%s]", "temperature", [ heating.fullName, 'gFenster' ], null, "1#STATE")
-                out.println createItem(ItemType.String, "LowBat", "$it.name $heating.parentGroup.label Batterie [MAP(lowbat.map):%s]", "battery", [ heating.fullName, 'gWarnungen' ], null, "1#LOWBAT")
-//String  ${heating.fullName}_Window_${asIdentifier(it.name)}_Error   "$it.name $heating.parentGroup.label Sabotage [MAP(MDirError.map):%s]"  <contact> (gWarnungen)                     {homematic="address=${it.value}, channel=1, parameter=ERROR"}
-            }
-        }
-
-        heating.valves.each {
-            it.with {
-                out.println createItem(ItemType.Dimmer, "Pos", "$it.name $heating.parentGroup.label [%d %%]", "heating", [ heating.fullName, 'gVentile' ], null, "1#VALVE_STATE")
-            }
+        player.homematic.with {
+            out.println createItem(ItemType.String, "Speak", "Sonos $player.parentGroup.label Sprachausgabe", null, [player.fullName], null, "1#PLAY_TTS")
+            out.println createItem(ItemType.String, "Duration", "Sonos $player.parentGroup.label Dauer", null, [player.fullName], null, "1#CURRENT_TRACK_DURATION")
+            out.println createItem(ItemType.String, "Time", "Sonos $player.parentGroup.label Zeit", null, [player.fullName], null, "1#CURRENT_TRACK_RELATIVE_TIME")
         }
 
         out.println ""

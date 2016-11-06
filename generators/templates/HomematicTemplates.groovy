@@ -1,4 +1,4 @@
-package com.blackbuild.openhab.generator.templates
+package templates
 
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticThing
@@ -9,18 +9,18 @@ import groovy.transform.TupleConstructor
 def class HeatingTemplate {
 
     @Delegate
-    HomeMaticHeating delegate
+    HomeMaticHeating thing
 
     ThermostatTemplate getThermostat() {
-        new ThermostatTemplate(delegate.thermostat)
+        new ThermostatTemplate(thing.thermostat)
     }
 
     List<ValveTemplate> getValves() {
-        delegate.valves.collect{ new ValveTemplate(it) }
+        thing.valves.collect{ new ValveTemplate(it) }
     }
 
     List<WindowTemplate> getWindows() {
-        delegate.windows.collect{ new WindowTemplate(it) }
+        thing.windows.collect{ new WindowTemplate(it) }
     }
 
     String getGroupDefinition() {
@@ -30,24 +30,9 @@ def class HeatingTemplate {
 }
 
 @TupleConstructor
-abstract class HomematicGroupTemplate {
+abstract class HomematicGroupTemplate extends AbstractTemplate {
     @Delegate
-    HomeMaticThing delegate
-
-    def createItem(ItemType type, String suffix, String label, String icon, List<String> groups, List<String> tags = [], String channel = null) {
-
-        def output = []
-
-        output << type
-        output << "${parentGroup.fullName}_$suffix"
-        if (icon) output << "<$icon>"
-        if (groups) output << "(${groups.join(',')})"
-        if (tags) output << "[" + tags.collect { /"$it"/ }.join(",") + "]"
-        if (channel) output << "{ channel=\"${getBinding(channel)}\" }"
-
-        return output.join(' ')
-    }
-
+    HomeMaticThing thing
 }
 
 @InheritConstructors

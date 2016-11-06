@@ -58,6 +58,8 @@ OpenHabConfig.create {
 
                 room("REB", "Rebecca") {
 
+                    sonos("5CAAFD2197A0", SonosPlayer.SonosType.PLAY_1)
+
                     smokedetector "NEQ0248173"
 
                     elements {
@@ -78,6 +80,7 @@ OpenHabConfig.create {
                 room("MIC", "Michael") {
 
                     smokedetector "NEQ0243894"
+                    sonos("5CAAFD2154C2", SonosPlayer.SonosType.PLAY_1)
 
                     elements {
                         element(NetatmoThing, "Michael") {
@@ -105,6 +108,7 @@ OpenHabConfig.create {
                 room("WOZ", "Wohn-/Esszimmer") {
 
                     smokedetector "NEQ0243890"
+                    sonos("5CAAFD0AAC36", SonosPlayer.SonosType.PLAY_5)
 
                     elements {
 //                        element(HomeMaticItem, "Display") {
@@ -122,7 +126,10 @@ OpenHabConfig.create {
                         }
                     }
                 }
-                room("KUE", "Küche") {}
+                room("KUE", "Küche") {
+                    sonos("5CAAFD242B6C", SonosPlayer.SonosType.PLAY_1)
+                    // sonos("5CAAFD218098", SonosPlayer.SonosType.PLAY_1)
+                }
                 room("SPS", "Speisekammer") {
                     elements {
                         element(HomeMaticThing, "Thermostat") {
@@ -170,9 +177,9 @@ OpenHabConfig.create {
             elements {
                 heating {
                     thermostat { serial "HEQ0145776"; type "HM-CC-TC" }
-                    window("Rechts") { serial "HEQ0106327"; type "HM-Sec-SC" }
-                    valve("Links") { serial "HEQ0513531"; type "HM-CC-VD" }
-                    valve("Rechts") { serial "HEQ0147527"; type "HM-CC-VD" }
+                    window("Fenster") { serial "HEQ0106327"; type "HM-Sec-SC" }
+                    valve("Ventil_L") { serial "HEQ0513531"; type "HM-CC-VD" }
+                    valve("Ventil_R") { serial "HEQ0147527"; type "HM-CC-VD" }
                 }
             }
         }

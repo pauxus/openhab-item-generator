@@ -9,4 +9,8 @@ abstract class Thing extends OpenHabElement {
         return 'i'
     }
 
+    abstract String getDefinition()
+    abstract String getBinding(String channel)
+
+
 }

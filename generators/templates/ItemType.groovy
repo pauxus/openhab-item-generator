@@ -1,4 +1,4 @@
-package com.blackbuild.openhab.generator.templates
+package templates
 
 enum ItemType {
 

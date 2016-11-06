@@ -40,4 +40,8 @@ class Room extends Group {
         def item = new SonosPlayer("Sonos", rincon, sonosType)
         element(item)
     }
+    def sonos(String rincon, String suffix, SonosType sonosType) {
+        def item = new SonosPlayer("Sonos$suffix", rincon, sonosType)
+        element(item)
+    }
 }

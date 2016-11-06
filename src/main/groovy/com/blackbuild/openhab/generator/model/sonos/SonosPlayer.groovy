@@ -23,9 +23,14 @@ class SonosPlayer extends CompositeElement {
         element(Sonos.create("Sonos") {})
     }
 
-    public void setId(String id) {
-        this.if
+    Homematic getHomematic() {
+        return elements.find { it instanceof Homematic }
     }
+
+    Sonos getSonos() {
+        return elements.find { it instanceof Sonos }
+    }
+
 
     @DSL
     static class Homematic extends HomeMaticThing {
@@ -52,7 +57,7 @@ class SonosPlayer extends CompositeElement {
 
         @Override
         String getId() {
-            return "sonos:$type:${getParentOfType(Room)?.name}"
+            return "${getParentOfType(Room)?.name}"
         }
 
         @Override
@@ -76,7 +81,7 @@ class SonosPlayer extends CompositeElement {
         PLAY_1, PLAY_5
 
         String getHomematicType() {
-            "Sonos-${toString().replace('_','-')}"
+            "HG-Sonos-${toString().replace('_','-')}"
         }
 
         String getSonosType() {

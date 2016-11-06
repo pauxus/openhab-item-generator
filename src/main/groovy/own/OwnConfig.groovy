@@ -3,6 +3,7 @@ package own
 import com.blackbuild.openhab.generator.model.Group
 import com.blackbuild.openhab.generator.model.NetatmoThing
 import com.blackbuild.openhab.generator.model.OpenHabConfig
+import com.blackbuild.openhab.generator.model.bridges.FritzAhaBridge
 import com.blackbuild.openhab.generator.model.bridges.HomegearBridge
 import com.blackbuild.openhab.generator.model.bridges.NetatmoBridge
 
@@ -31,17 +32,25 @@ OpenHabConfig.create {
             gatewayAddress "localhost"
             homegear()
         }
+
+        bridge(FritzAhaBridge, "fritz") {
+            ipAddress "192.168.1.2"
+            password '1431micong00'
+        }
     }
 
     elements {
 
         alle = element(Group, "Alle") {}
-        element(Group, "gTemperatur") { additionalGroup alle }
-        element(Group, "gVentile") { additionalGroup alle }
-        element(Group, "gFeuchtigkeit") { additionalGroup alle }
-        element(Group, "gWarnungen") { additionalGroup alle }
-        element(Group, "gFenster") { additionalGroup alle }
-        element(Group, "gRauchmelder") { additionalGroup alle }
+        element(Group, "Temperatur") { additionalGroup alle }
+        element(Group, "Chart") { additionalGroup alle }
+        element(Group, "Ventile") { additionalGroup alle }
+        element(Group, "Feuchtigkeit") { additionalGroup alle }
+        element(Group, "Warnungen") { additionalGroup alle }
+        element(Group, "Fenster") { additionalGroup alle }
+        element(Group, "Rauchmelder") { additionalGroup alle }
+        element(Group, "Co2") { additionalGroup alle }
+        element(Group, "maintenanceItems") { additionalGroup alle }
 
         element(Group, "WB") {
             label "Wohnbereich"
@@ -117,6 +126,11 @@ OpenHabConfig.create {
 //                        }
                     }
                     elements {
+                        element(NetatmoThing, "Michael") {
+                            equipmentId "03:00:00:01:55:e2"
+                            parentId "70:ee:50:06:75:f4"
+                            type(NetatmoThing.Type.INDOOR)
+                        }
                         heating {
                             thermostat { serial "HEQ0080137"; type "HM-CC-TC" }
                             window("WZ") { serial "IEQ0206565"; type "HM-Sec-RHS" }
@@ -175,6 +189,11 @@ OpenHabConfig.create {
             sonos("5CAAFD2155E8", SonosPlayer.SonosType.PLAY_1)
 
             elements {
+                element(NetatmoThing, "Buero") {
+                    equipmentId "70:ee:50:06:75:f4"
+                    type(NetatmoThing.Type.BASE)
+                }
+
                 heating {
                     thermostat { serial "HEQ0145776"; type "HM-CC-TC" }
                     window("Fenster") { serial "HEQ0106327"; type "HM-Sec-SC" }

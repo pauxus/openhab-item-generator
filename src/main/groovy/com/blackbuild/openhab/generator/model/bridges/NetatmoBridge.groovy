@@ -19,8 +19,6 @@ class NetatmoBridge extends Bridge<NetatmoThing> {
     String username
     String password
 
-    @Override
-    String getParameterString() {
-        $/clientId="$clientId", clientSecret="$clientSecret", username="$username", password="$password"/$
-    }
+    final List<String> parameterProperties = ['clientId', 'clientSecret', 'username', 'password']
+
 }

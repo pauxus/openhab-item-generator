@@ -16,7 +16,7 @@ into("items/homematic.items") { out ->
             out.println createItem(ItemType.Number, "Set", "Soll-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur', 'gChart' ], ["TargetTemperature"], "2#SETPOINT")
             out.println createItem(ItemType.Number, "Humid", "Feuchtigkeit $heating.parentGroup.label [%d %%]", "water", [ heating.fullName, 'gFeuchtigkeit', 'gChart' ], ["CurrentHumidity"], "1#HUMIDITY")
 
-            out.println createItem(ItemType.Number, "Mode", "Dummy Modus $heating.parentGroup.label [%s]", null, [ heating.fullName ], ["homekit:HeatingCoolingMode"])
+            out.println createItem(ItemType.String, "Mode", "Dummy Modus $heating.parentGroup.label [%s]", null, [ heating.fullName ], ["homekit:HeatingCoolingMode"])
 
             out.println createItem(ItemType.Number, "Rssi", "RSSI Thermostat $heating.parentGroup.label [SCALE(rssi.scale):%s]", "signal", [ heating.fullName, 'gWarnungen' ], null, "0#RSSI_DEVICE")
             out.println createItem(ItemType.Dimmer, "Rssi_perc", "RSSI Thermostat $heating.parentGroup.label [%d %%]", "signal", [ heating.fullName, 'gWarnungen' ])

@@ -14,10 +14,7 @@ class HomegearBridge extends Bridge<HomeMaticThing> {
 
     boolean homegear
 
-    @Override
-    String getParameterString() {
-        $/gatewayAddress="$gatewayAddress"/$
-    }
+    final List<String> parameterProperties = ['gatewayAddress']
 
     @Override
     void additionalThings(StringWriter out) {

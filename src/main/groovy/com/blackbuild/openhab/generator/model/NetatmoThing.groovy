@@ -11,6 +11,10 @@ class NetatmoThing extends BridgedThing {
         return type.moduleName
     }
 
+    Type getRawType() {
+        return type
+    }
+
     String equipmentId
     String parentId
     int refreshInterval

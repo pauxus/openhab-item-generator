@@ -5,7 +5,6 @@ import com.blackbuild.groovy.configdsl.transform.Key
 import com.blackbuild.groovy.configdsl.transform.Owner
 import com.blackbuild.openhab.generator.model.BridgedThing
 import com.blackbuild.openhab.generator.model.OpenHabConfig
-
 /**
  * Represents a OpenHab2 Bridge, i.e. the surrounding tag of a things file.
  */
@@ -29,7 +28,15 @@ abstract class Bridge<T extends BridgedThing> {
         "$namespace:$bridgeType:$id"
     }
 
-    abstract String getParameterString()
+    abstract List<String> getParameterProperties()
+
+    String getParameterString() {
+        parameterProperties.collectEntries { [it, getProperty(it)] }.findResults { key, value ->
+            if (!value) return null
+
+            $/$key="$value"/$
+        }.join(",")
+    }
 
 
     String getDefinition() {
@@ -57,5 +64,4 @@ abstract class Bridge<T extends BridgedThing> {
     void additionalThings(StringWriter out) {
 
     }
-
 }

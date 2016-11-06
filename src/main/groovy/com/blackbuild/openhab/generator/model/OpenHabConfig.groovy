@@ -41,6 +41,13 @@ class OpenHabConfig {
         all(type).collectEntries { [it.name, it]}
     }
 
+    def room(String name, String theLabel, @DelegatesTo(Room) Closure closure) {
+        def room = Room.create(name) {
+            label(theLabel)
+        }.apply(closure)
+        element(room)
+    }
+
     static class Collector implements Visitor {
         List<OpenHabElement> result = []
         Class type

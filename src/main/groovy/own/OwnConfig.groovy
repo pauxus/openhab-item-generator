@@ -3,11 +3,12 @@ package own
 import com.blackbuild.openhab.generator.model.Group
 import com.blackbuild.openhab.generator.model.NetatmoThing
 import com.blackbuild.openhab.generator.model.OpenHabConfig
-import com.blackbuild.openhab.generator.model.Room
 import com.blackbuild.openhab.generator.model.bridges.HomegearBridge
 import com.blackbuild.openhab.generator.model.bridges.NetatmoBridge
+
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticThing
+import com.blackbuild.openhab.generator.model.sonos.SonosPlayer
 
 Group alle
 
@@ -30,7 +31,6 @@ OpenHabConfig.create {
             gatewayAddress "localhost"
             homegear()
         }
-
     }
 
     elements {
@@ -56,9 +56,9 @@ OpenHabConfig.create {
                     type "HM-Sec-SD-2-Team"
                 }
 
-                element(Room, "REB") {
+                room("REB", "Rebecca") {
 
-                    label "Rebecca"
+                    smokedetector "NEQ0248173"
 
                     elements {
                         element(NetatmoThing, "Rebecca") {
@@ -66,21 +66,18 @@ OpenHabConfig.create {
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
                         }
-                        element(HomeMaticHeating, "Heating") {
+                        heating {
                             thermostat { serial "HEQ0509781"; type "HM-CC-TC" }
                             window("Südfenster") { serial "MEQ0717740"; type "HM-Sec-SCo" }
                             valve("Heizkörper") { serial "HEQ0137974"; type "HM-CC-VD" }
-                        }
-                        element(HomeMaticThing, "Rauchmelder") {
-                            serial "NEQ0248173"
-                            type "HM-Sec-SD-2"
                         }
                     }
                 }
 
 
-                element(Room, "MIC") {
-                    label "Michael"
+                room("MIC", "Michael") {
+
+                    smokedetector "NEQ0243894"
 
                     elements {
                         element(NetatmoThing, "Michael") {
@@ -88,21 +85,16 @@ OpenHabConfig.create {
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
                         }
-                        element(HomeMaticHeating, "Heating") {
+                        heating {
                             thermostat { serial "IEQ0170661"; type "HM-CC-TC" }
                             window("Nordfenster") { serial "IEQ0032480"; type "HM-Sec-SC" }
                             valve("Heizkörper") { serial "IEQ0172061"; type "HM-CC-VD" }
                         }
-                        element(HomeMaticThing, "Rauchmelder") {
-                            serial "NEQ0243894"
-                            type "HM-Sec-SD-2"
-                        }
                     }
                 }
-                element(Room, "BAD") {
-                    label "Badezimmer"
+                room("BAD", "Badezimmer") {
                     elements {
-                        element(HomeMaticHeating, "Heating") {
+                        heating {
                             thermostat { serial "HEQ0079972"; type "HM-CC-TC" }
                             window("Fenster") { serial "HEQ0106396"; type "HM-Sec-SC" }
                             valve("Heizkörper") { serial "FEQ0069155"; type "HM-CC-VD" }
@@ -110,8 +102,9 @@ OpenHabConfig.create {
                     }
                 }
 
-                element(Room, "WOZ") {
-                    label "Wohn-/Esszimmer"
+                room("WOZ", "Wohn-/Esszimmer") {
+
+                    smokedetector "NEQ0243890"
 
                     elements {
 //                        element(HomeMaticItem, "Display") {
@@ -120,24 +113,17 @@ OpenHabConfig.create {
 //                        }
                     }
                     elements {
-                        element(HomeMaticHeating, "Heating") {
+                        heating {
                             thermostat { serial "HEQ0080137"; type "HM-CC-TC" }
                             window("WZ") { serial "IEQ0206565"; type "HM-Sec-RHS" }
                             window("EZ") { serial "GEQ0128784"; type "HM-Sec-RHS" }
                             valve("WZ") { serial "HEQ0081426"; type "HM-CC-VD" }
                             valve("EZ") { serial "HEQ0081331"; type "HM-CC-VD" }
                         }
-                        element(HomeMaticThing, "Rauchmelder") {
-                            serial "NEQ0243890"
-                            type "HM-Sec-SD-2"
-                        }
                     }
                 }
-                element(Room, "KUE") {
-                    label "Küche"
-                }
-                element(Room, "SPS") {
-                    label "Speisekammer"
+                room("KUE", "Küche") {}
+                room("SPS", "Speisekammer") {
                     elements {
                         element(HomeMaticThing, "Thermostat") {
                             type "HM-WDS40-TH-I"
@@ -145,37 +131,24 @@ OpenHabConfig.create {
                         }
                     }
                 }
-                element(Room, "SZI") {
-                    label "Schlafzimmer"
+                room("SZI", "Schlafzimmer") {
+                    smokedetector "NEQ0247900"
+
                     elements {
-                        element(HomeMaticHeating, "Heating") {
+                        heating {
 
                             thermostat { serial "IEQ0170436"; type "HM-CC-TC" }
                             window("Südfenster") { serial "IEQ0204643"; type "HM-Sec-SC" }
                             valve("Heizkörper") { serial "IEQ0172816"; type "HM-CC-VD" }
                         }
-                        element(HomeMaticThing, "Rauchmelder") {
-                            serial "NEQ0247900"
-                            type "HM-Sec-SD-2"
-                        }
                     }
                 }
-                element(Room, "TRH") {
-                    label "Treppenhaus"
-                    elements {
-                        element(HomeMaticThing, "Rauch_EG") {
-                            serial "NEQ0244388"
-                            type "HM-Sec-SD-2"
-                        }
-                        element(HomeMaticThing, "Rauch_OG") {
-                            serial "NEQ0248218"
-                            type "HM-Sec-SD-2"
-                        }
+                room("TRH", "Treppenhaus") {
 
-                    }
+                    smokedetector "NEQ0244388", "EG"
+                    smokedetector "NEQ0248218", "OG"
                 }
-                element(Room, "GWC") {
-                    label "Gästetoilette"
+                room("GWC", "Gästetoilette") {
                     elements {
                         element(HomeMaticThing, "Fenster") {
                             serial "KEQ0159530"
@@ -187,16 +160,15 @@ OpenHabConfig.create {
         }
 
 
-        element(Room, "DG") {
-            label "Büro"
+        room("DG", "Büro") {
             additionalGroups {
                 additionalGroup alle
             }
 
+            sonos("5CAAFD2155E8", SonosPlayer.SonosType.PLAY_1)
+
             elements {
-            }
-            elements {
-                element(HomeMaticHeating, "Heating") {
+                heating {
                     thermostat { serial "HEQ0145776"; type "HM-CC-TC" }
                     window("Rechts") { serial "HEQ0106327"; type "HM-Sec-SC" }
                     valve("Links") { serial "HEQ0513531"; type "HM-CC-VD" }
@@ -212,8 +184,7 @@ OpenHabConfig.create {
 
             elements {
 
-                element(Room, "HZG") {
-                    label "Heizungskeller"
+                room("HZG", "Heizungskeller") {
                     elements {
                         element(HomeMaticThing, "Thermostat") {
                             type "HM-WDS40-TH-I"
@@ -221,8 +192,7 @@ OpenHabConfig.create {
                         }
                     }
                 }
-                element(Room, "VOR") {
-                    label "Vorratskeller"
+                room("VOR", "Vorratskeller") {
 
                     elements {
                         element(HomeMaticThing, "Thermostat") {
@@ -232,11 +202,9 @@ OpenHabConfig.create {
                     }
 
                 }
-                element(Room, "LGR") {
-                    label "Lagerkeller"
+                room("LGR", "Lagerkeller") {
                 }
-                element(Room, "WAK") {
-                    label "Waschküche"
+                room("WAK", "Waschküche") {
                     elements {
                         element(HomeMaticThing, "Trockner") {
                             type "HM-ES-PMSw1-Pl"

@@ -1,30 +1,30 @@
 package com.blackbuild.openhab.generator.model
 
 import com.blackbuild.groovy.configdsl.transform.DSL
-import com.blackbuild.openhab.generator.model.bridges.Bridge
-
 /**
  * A bound item represents an item defined by a bridge
  */
 @DSL
-abstract class BridgedThing extends Thing {
+abstract class BridgelessThing extends Thing {
 
-    Bridge getBridge() {
-        config.bridges.find { it.thingType.isInstance(this)}
-    }
-
+    abstract String getNamespace()
     abstract String getId()
     abstract String getType()
 
     String getTypeDescription() {
         type
     }
+
     String getParameterString() {
         ""
     }
 
+    String getThingDefinition() {
+        "$namespace:$type:$id"
+    }
+
     String getBinding(String channel) {
-        "$bridge.namespace:$type:$bridge.id:$id:$channel"
+        "$thingDefinition:$channel"
     }
 
     String getThingLabel() {
@@ -33,7 +33,7 @@ abstract class BridgedThing extends Thing {
 
     String getDefinition() {
         String roomName = getParentOfType(Room)?.label
-        $/Thing $type $id "$thingLabel" ${ parameterString ? "[ $parameterString ]" : ""} ${roomName ? "// @ \"$roomName\"" : ""}/$
+        $/Thing $thingDefinition "$thingLabel" ${ parameterString ? "[ $parameterString ]" : ""} ${roomName ? "// @ \"$roomName\"" : ""}/$
     }
 
 }

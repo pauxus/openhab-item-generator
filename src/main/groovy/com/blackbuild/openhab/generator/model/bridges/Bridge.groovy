@@ -37,6 +37,14 @@ abstract class Bridge<T extends BridgedThing> {
 
         result.println "Bridge $bridgeAddress [ $parameterString ] {"
 
+        configuredThings(result)
+
+        result.println "}"
+
+        return result
+    }
+
+    void configuredThings(StringWriter result) {
         things.each {
             result.println "  $it.definition"
         }
@@ -44,11 +52,6 @@ abstract class Bridge<T extends BridgedThing> {
         result.println ""
 
         additionalThings(result)
-
-
-        result.println "}"
-
-        return result
     }
 
     void additionalThings(StringWriter out) {

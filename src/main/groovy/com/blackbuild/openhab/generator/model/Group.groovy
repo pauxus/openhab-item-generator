@@ -17,4 +17,13 @@ class Group extends OpenHabElement {
 
         elements.each {it.accept(visitor)}
     }
+
+    def room(String name, String theLabel, @DelegatesTo(Room) Closure closure) {
+        def room = Room.create(name) {
+            label(theLabel)
+        }.apply(closure)
+        element(room)
+    }
+
+
 }

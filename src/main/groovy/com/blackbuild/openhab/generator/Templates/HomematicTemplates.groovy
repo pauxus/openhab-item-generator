@@ -1,4 +1,4 @@
-package com.blackbuild.openhab.generator.Templates
+package com.blackbuild.openhab.generator.templates
 
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticThing

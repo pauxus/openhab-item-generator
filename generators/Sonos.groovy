@@ -1,11 +1,9 @@
-import com.blackbuild.openhab.generator.templates.HeatingTemplate
+import com.blackbuild.openhab.generator.model.sonos.SonosPlayer
 import com.blackbuild.openhab.generator.templates.ItemType
-import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 
-into("items/homematic.items") { out ->
+into("items/sonos.items") { out ->
 
-    config.all(HomeMaticHeating).each { rawHeating ->
-        def heating = new HeatingTemplate(rawHeating)
+    config.all(SonosPlayer).each { player ->
 
         out.println "//-------------------------------------------- Heizung $heating.parentGroup.label"
 

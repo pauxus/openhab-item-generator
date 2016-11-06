@@ -9,7 +9,7 @@ import com.blackbuild.openhab.generator.model.bridges.NetatmoBridge
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticThing
 
-Group alle = Group.create("Alle") {}
+Group alle
 
 HomeMaticHeating.createTemplate {
     fixValues(17, 20, 21)
@@ -28,13 +28,20 @@ OpenHabConfig.create {
 
         bridge(HomegearBridge, "hg") {
             gatewayAddress "localhost"
+            homegear()
         }
 
     }
 
     elements {
 
-        element(alle)
+        alle = element(Group, "Alle") {}
+        element(Group, "gTemperatur") { additionalGroup alle }
+        element(Group, "gVentile") { additionalGroup alle }
+        element(Group, "gFeuchtigkeit") { additionalGroup alle }
+        element(Group, "gWarnungen") { additionalGroup alle }
+        element(Group, "gFenster") { additionalGroup alle }
+        element(Group, "gRauchmelder") { additionalGroup alle }
 
         element(Group, "WB") {
             label "Wohnbereich"
@@ -44,6 +51,11 @@ OpenHabConfig.create {
 
 
             elements {
+                element(HomeMaticThing, "Rauchmelder_Team_Neu") {
+                    serial "T-NEQ0247900"
+                    type "HM-Sec-SD-2-Team"
+                }
+
                 element(Room, "REB") {
 
                     label "Rebecca"
@@ -56,8 +68,12 @@ OpenHabConfig.create {
                         }
                         element(HomeMaticHeating, "Heating") {
                             thermostat { serial "HEQ0509781"; type "HM-CC-TC" }
-                            window("Südfenster") { serial "JEQ0719115"; type "HM-Sec-SCo" }
+                            window("Südfenster") { serial "MEQ0717740"; type "HM-Sec-SCo" }
                             valve("Heizkörper") { serial "HEQ0137974"; type "HM-CC-VD" }
+                        }
+                        element(HomeMaticThing, "Rauchmelder") {
+                            serial "NEQ0248173"
+                            type "HM-Sec-SD-2"
                         }
                     }
                 }
@@ -67,7 +83,7 @@ OpenHabConfig.create {
                     label "Michael"
 
                     elements {
-                        element(NetatmoThing, "NetAtmo") {
+                        element(NetatmoThing, "Michael") {
                             equipmentId "03:00:00:01:44:a0"
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
@@ -76,6 +92,10 @@ OpenHabConfig.create {
                             thermostat { serial "IEQ0170661"; type "HM-CC-TC" }
                             window("Nordfenster") { serial "IEQ0032480"; type "HM-Sec-SC" }
                             valve("Heizkörper") { serial "IEQ0172061"; type "HM-CC-VD" }
+                        }
+                        element(HomeMaticThing, "Rauchmelder") {
+                            serial "NEQ0243894"
+                            type "HM-Sec-SD-2"
                         }
                     }
                 }
@@ -101,11 +121,15 @@ OpenHabConfig.create {
                     }
                     elements {
                         element(HomeMaticHeating, "Heating") {
-                            thermostat { serial "HEQ0079972"; type "HM-CC-TC" }
+                            thermostat { serial "HEQ0080137"; type "HM-CC-TC" }
                             window("WZ") { serial "IEQ0206565"; type "HM-Sec-RHS" }
                             window("EZ") { serial "GEQ0128784"; type "HM-Sec-RHS" }
                             valve("WZ") { serial "HEQ0081426"; type "HM-CC-VD" }
                             valve("EZ") { serial "HEQ0081331"; type "HM-CC-VD" }
+                        }
+                        element(HomeMaticThing, "Rauchmelder") {
+                            serial "NEQ0243890"
+                            type "HM-Sec-SD-2"
                         }
                     }
                 }
@@ -130,13 +154,34 @@ OpenHabConfig.create {
                             window("Südfenster") { serial "IEQ0204643"; type "HM-Sec-SC" }
                             valve("Heizkörper") { serial "IEQ0172816"; type "HM-CC-VD" }
                         }
+                        element(HomeMaticThing, "Rauchmelder") {
+                            serial "NEQ0247900"
+                            type "HM-Sec-SD-2"
+                        }
                     }
                 }
                 element(Room, "TRH") {
                     label "Treppenhaus"
+                    elements {
+                        element(HomeMaticThing, "Rauch_EG") {
+                            serial "NEQ0244388"
+                            type "HM-Sec-SD-2"
+                        }
+                        element(HomeMaticThing, "Rauch_OG") {
+                            serial "NEQ0248218"
+                            type "HM-Sec-SD-2"
+                        }
+
+                    }
                 }
                 element(Room, "GWC") {
                     label "Gästetoilette"
+                    elements {
+                        element(HomeMaticThing, "Fenster") {
+                            serial "KEQ0159530"
+                            type "HM-Sec-SC"
+                        }
+                    }
                 }
             }
         }
@@ -171,7 +216,7 @@ OpenHabConfig.create {
                     label "Heizungskeller"
                     elements {
                         element(HomeMaticThing, "Thermostat") {
-                            type "HMWDS40THI"
+                            type "HM-WDS40-TH-I"
                             serial "JEQ0218038"
                         }
                     }
@@ -181,7 +226,7 @@ OpenHabConfig.create {
 
                     elements {
                         element(HomeMaticThing, "Thermostat") {
-                            type "HMWDS40THI"
+                            type "HM-WDS40-TH-I"
                             serial "JEQ0064575"
                         }
                     }

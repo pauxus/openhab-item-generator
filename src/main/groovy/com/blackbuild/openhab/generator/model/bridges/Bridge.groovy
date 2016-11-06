@@ -35,17 +35,24 @@ abstract class Bridge<T extends BridgedThing> {
     String getDefinition() {
         StringWriter result = new StringWriter()
 
-        result.with {
-            println "Bridge $bridgeAddress [ $parameterString ] {"
+        result.println "Bridge $bridgeAddress [ $parameterString ] {"
 
-            things.each {
-                println "  $it.definition"
-            }
-
-            println "}"
+        things.each {
+            result.println "  $it.definition"
         }
 
+        result.println ""
+
+        additionalThings(result)
+
+
+        result.println "}"
+
         return result
+    }
+
+    void additionalThings(StringWriter out) {
+
     }
 
 }

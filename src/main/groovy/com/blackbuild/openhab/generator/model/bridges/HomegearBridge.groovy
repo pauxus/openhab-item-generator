@@ -18,4 +18,9 @@ class HomegearBridge extends Bridge<HomeMaticThing> {
     String getParameterString() {
         $/gatewayAddress="$gatewayAddress"/$
     }
+
+    @Override
+    void additionalThings(StringWriter out) {
+        out.println "  Thing GATEWAY-EXTRAS-${id.toUpperCase()} GWE00000000"
+    }
 }

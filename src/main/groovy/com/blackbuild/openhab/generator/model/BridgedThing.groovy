@@ -15,6 +15,10 @@ abstract class BridgedThing extends Thing {
 
     abstract String getId()
     abstract String getType()
+
+    String getTypeDescription() {
+        type
+    }
     String getParameterString() {
         ""
     }
@@ -25,7 +29,7 @@ abstract class BridgedThing extends Thing {
 
     String getDefinition() {
         String roomName = getParentOfType(Room)?.label
-        $/Thing $type $id ${ parameterString ? "[ $parameterString ]" : ""} "$name"${roomName ? " @ \"$roomName\"" : ""}/$
+        $/Thing $type $id "$typeDescription $name" ${ parameterString ? "[ $parameterString ]" : ""} ${roomName ? "// @ \"$roomName\"" : ""}/$
     }
 
 }

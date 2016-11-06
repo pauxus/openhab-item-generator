@@ -1,9 +1,4 @@
-import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
-import com.blackbuild.openhab.generator.model.homematic.HomeMaticItem
-import com.blackbuild.openhab.generator.model.NetatmoDevice
-import com.blackbuild.openhab.generator.model.Room
-import com.blackbuild.openhab.generator.model.homematic.HomeMaticThing
-
+/*
 into("sitemaps/default.sitemap") { out ->
 
     config.all(Room).each { room ->
@@ -58,3 +53,4 @@ Text label="$room.label" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
 
     }
 }
+*/

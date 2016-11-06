@@ -36,6 +36,11 @@ class NetatmoThing extends BridgedThing {
     }
 
     @Override
+    String getTypeDescription() {
+        return type.description
+    }
+
+    @Override
     String getId() {
         return name
     }
@@ -45,7 +50,7 @@ class NetatmoThing extends BridgedThing {
         def result = [/equipmentId="$equipmentId"/]
 
         if (parentId)
-            result << /parentId=$parentId"/
+            result << /parentId="$parentId"/
 
         if (refreshInterval)
             result << /refreshInterval=$refreshInterval/
@@ -55,15 +60,17 @@ class NetatmoThing extends BridgedThing {
 
     enum Type {
 
-        INDOOR("NAModule4"),
-        OUTDOOR("NAModule1"),
-        BASE("NAMain"),
-        RAIN("NAModule3")
+        INDOOR("NAModule4", "Innenmodul"),
+        OUTDOOR("NAModule1", "Aussenmodul"),
+        BASE("NAMain", "Basisstation"),
+        RAIN("NAModule3", "Regenmesser")
 
         final String moduleName
+        final String description
 
-        Type(String moduleName) {
+        Type(String moduleName, String description) {
             this.moduleName = moduleName
+            this.description = description
         }
     }
 }

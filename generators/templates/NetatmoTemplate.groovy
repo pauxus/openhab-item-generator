@@ -11,6 +11,4 @@ class NetatmoTemplate extends AbstractTemplate {
     @Delegate
     NetatmoThing thing
 
-
-
 }

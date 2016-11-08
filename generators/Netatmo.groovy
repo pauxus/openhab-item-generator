@@ -15,8 +15,8 @@ into("items/netatmo.items") { out ->
 
             if (netatmo.rawType in [NetatmoThing.Type.BASE, NetatmoThing.Type.INDOOR,NetatmoThing.Type.OUTDOOR]) {
 
-                out.println createItem(ItemType.Number, "NATemp", "NA Temperatur $netatmo.parentGroup.label [%.1f °C]", "temperature", [netatmo.fullName, 'gTemperatur', 'gChart'], null, "Temperature")
-                out.println createItem(ItemType.Number, "NAHumid", "NA Feuchtigkeit $netatmo.parentGroup.label [%d %%]", "water", [netatmo.fullName, 'gFeuchtigkeit', 'gChart'], null, "Humidity")
+                out.println createItem(ItemType.Number, "Temp", "NA Temperatur $netatmo.parentGroup.label [%.1f °C]", "temperature", [netatmo.fullName, 'gTemperatur', 'gChart'], null, "Temperature")
+                out.println createItem(ItemType.Number, "Humid", "NA Feuchtigkeit $netatmo.parentGroup.label [%d %%]", "water", [netatmo.fullName, 'gFeuchtigkeit', 'gChart'], null, "Humidity")
 
             }
 

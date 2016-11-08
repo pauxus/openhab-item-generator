@@ -7,7 +7,7 @@ config.bridges.each { bridge ->
     }
 }
 
-into("thing/bridgeless.things") { out ->
+into("things/bridgeless.things") { out ->
     out.println "// Bridgeless things"
 
     config.all(BridgelessThing).each { thing ->

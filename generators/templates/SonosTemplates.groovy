@@ -27,7 +27,7 @@ def class SonosPlayerTemplate {
         @Delegate SonosPlayer.Sonos thing
 
         def createItem(ItemType type, String suffix, String label, String icon, List<String> groups, List<String> tags = [], String channel = null) {
-            super.createItem(type, "Sonos_$suffix", label, icon, groups, tags, channel)
+            super.createItem(type, "$suffix", label, icon, groups, tags, channel)
         }
     }
 
@@ -37,7 +37,7 @@ def class SonosPlayerTemplate {
         @Delegate SonosPlayer.Homematic thing
 
         def createItem(ItemType type, String suffix, String label, String icon, List<String> groups, List<String> tags = [], String channel = null) {
-            super.createItem(type, "SonosHG_$suffix", label, icon, groups, tags, channel)
+            super.createItem(type, "$suffix", label, icon, groups, tags, channel)
         }
 
     }

@@ -46,7 +46,7 @@ class NetatmoThing extends BridgedThing {
 
     @Override
     String getId() {
-        return name
+        return safeName
     }
 
     @Override

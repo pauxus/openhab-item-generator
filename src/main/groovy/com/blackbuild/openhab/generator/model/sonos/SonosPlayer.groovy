@@ -19,7 +19,7 @@ class SonosPlayer extends CompositeElement {
         this(name)
         this.id = id
         this.type = type
-        element(Homematic.create("HM") {})
+        element(Homematic.create("SonosHG") {})
         element(Sonos.create("Sonos") {})
     }
 

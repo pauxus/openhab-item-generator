@@ -16,7 +16,7 @@ into("items/homematic.items") { out ->
             out.println createItem(ItemType.Number, "Set", "Soll-Temperatur $heating.parentGroup.label [%.1f °C]", "temperature", [ heating.fullName, 'gTemperatur', 'gChart' ], ["TargetTemperature"], "2#SETPOINT")
             out.println createItem(ItemType.Number, "Humid", "Feuchtigkeit $heating.parentGroup.label [%d %%]", "water", [ heating.fullName, 'gFeuchtigkeit', 'gChart' ], ["CurrentHumidity"], "1#HUMIDITY")
 
-            out.println createItem(ItemType.String, "Mode", "Dummy Modus $heating.parentGroup.label [%s]", null, [ heating.fullName ], ["homekit:HeatingCoolingMode"])
+            out.println createItem(ItemType.String, "Mode", "Heizung $heating.parentGroup.label [%s]", null, [ heating.fullName ], ["homekit:HeatingCoolingMode"])
 
             out.println createItem(ItemType.Number, "Rssi", "RSSI Thermostat $heating.parentGroup.label [SCALE(rssi.scale):%s]", "signal", [ heating.fullName, 'gWarnungen' ], null, "0#RSSI_DEVICE")
             out.println createItem(ItemType.Dimmer, "Rssi_perc", "RSSI Thermostat $heating.parentGroup.label [%d %%]", "signal", [ heating.fullName, 'gWarnungen' ])
@@ -40,6 +40,33 @@ into("items/homematic.items") { out ->
         }
 
         out.println ""
+    }
+}
+
+into("rules/heatingmode.rules") { out ->
+
+    config.all(HomeMaticHeating).each { rawHeating ->
+        def heating = new HeatingTemplate(rawHeating)
+
+        heating.thermostat.with {
+            out.println """
+rule Heating_i${thing.parentGroup.canonicalName}_Mode_Off
+when
+  Item ${heating.valves[0].fullName}_Pos changed to 0
+then
+  sendCommand(i${thing.parentGroup.canonicalName}_Mode, 'auto')
+end
+
+rule Heating_i${thing.parentGroup.canonicalName}_Mode_On
+when
+  Item ${heating.valves[0].fullName}_Pos changed from 0
+then
+  sendCommand(i${thing.parentGroup.canonicalName}_Mode, 'heat')
+end
+
+
+"""
+        }
     }
 }
 

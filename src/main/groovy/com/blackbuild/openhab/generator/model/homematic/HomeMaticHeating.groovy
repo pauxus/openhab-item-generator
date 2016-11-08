@@ -2,10 +2,10 @@ package com.blackbuild.openhab.generator.model.homematic
 
 import com.blackbuild.groovy.configdsl.transform.DSL
 import com.blackbuild.openhab.generator.Visitor
-import com.blackbuild.openhab.generator.model.CompositeElement
+import com.blackbuild.openhab.generator.model.Group
 
 @DSL
-class HomeMaticHeating extends CompositeElement {
+class HomeMaticHeating extends Group {
 
     HomeMaticThing thermostat
     List<HomeMaticThing> windows

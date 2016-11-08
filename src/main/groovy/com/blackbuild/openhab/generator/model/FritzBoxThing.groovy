@@ -8,14 +8,17 @@ import com.blackbuild.groovy.configdsl.transform.DSL
 @DSL
 class FritzBoxThing extends BridgedThing {
 
+    final String type = "FRITZ_DECT_200"
+
+    String ain
+
     @Override
     String getId() {
-        return null
+        return ain
     }
 
     @Override
-    String getType() {
-        return null
+    String getParameterString() {
+        return (/ain="$ain"/)
     }
-
 }

@@ -1,5 +1,6 @@
 package own
 
+import com.blackbuild.openhab.generator.model.FritzBoxThing
 import com.blackbuild.openhab.generator.model.Group
 import com.blackbuild.openhab.generator.model.NetatmoThing
 import com.blackbuild.openhab.generator.model.OpenHabConfig
@@ -51,6 +52,8 @@ OpenHabConfig.create {
         element(Group, "Rauchmelder") { additionalGroup alle }
         element(Group, "Co2") { additionalGroup alle }
         element(Group, "maintenanceItems") { additionalGroup alle }
+        element(Group, "Power") { additionalGroup alle }
+        element(Group, "Energy") { additionalGroup alle }
 
         element(Group, "WB") {
             label "Wohnbereich"
@@ -72,7 +75,7 @@ OpenHabConfig.create {
                     smokedetector "NEQ0248173"
 
                     elements {
-                        element(NetatmoThing, "Rebecca") {
+                        element(NetatmoThing, "Netatmo") {
                             equipmentId "03:00:00:01:3a:80"
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
@@ -92,7 +95,7 @@ OpenHabConfig.create {
                     sonos("5CAAFD2154C2", SonosPlayer.SonosType.PLAY_1)
 
                     elements {
-                        element(NetatmoThing, "Michael") {
+                        element(NetatmoThing, "Netatmo") {
                             equipmentId "03:00:00:01:44:a0"
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
@@ -100,7 +103,7 @@ OpenHabConfig.create {
                         heating {
                             thermostat { serial "IEQ0170661"; type "HM-CC-TC" }
                             window("Nordfenster") { serial "IEQ0032480"; type "HM-Sec-SC" }
-                            valve("Heizkörper") { serial "IEQ0172061"; type "HM-CC-VD" }
+                            valve("Ventil") { serial "IEQ0172061"; type "HM-CC-VD" }
                         }
                     }
                 }
@@ -109,7 +112,7 @@ OpenHabConfig.create {
                         heating {
                             thermostat { serial "HEQ0079972"; type "HM-CC-TC" }
                             window("Fenster") { serial "HEQ0106396"; type "HM-Sec-SC" }
-                            valve("Heizkörper") { serial "FEQ0069155"; type "HM-CC-VD" }
+                            valve("Ventil") { serial "FEQ0069155"; type "HM-CC-VD" }
                         }
                     }
                 }
@@ -126,17 +129,21 @@ OpenHabConfig.create {
 //                        }
                     }
                     elements {
-                        element(NetatmoThing, "Michael") {
+                        element(NetatmoThing, "Netatmo") {
                             equipmentId "03:00:00:01:55:e2"
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
                         }
+                        element(FritzBoxThing, "AVGeräte") {
+                            ain "087610014130"
+                        }
+
                         heating {
                             thermostat { serial "HEQ0080137"; type "HM-CC-TC" }
-                            window("WZ") { serial "IEQ0206565"; type "HM-Sec-RHS" }
-                            window("EZ") { serial "GEQ0128784"; type "HM-Sec-RHS" }
-                            valve("WZ") { serial "HEQ0081426"; type "HM-CC-VD" }
-                            valve("EZ") { serial "HEQ0081331"; type "HM-CC-VD" }
+                            window("WZ-Fenster") { serial "IEQ0206565"; type "HM-Sec-RHS" }
+                            window("EZ-Fenster") { serial "GEQ0128784"; type "HM-Sec-RHS" }
+                            valve("WZ-Ventil") { serial "HEQ0081426"; type "HM-CC-VD" }
+                            valve("EZ-Ventil") { serial "HEQ0081331"; type "HM-CC-VD" }
                         }
                     }
                 }
@@ -160,7 +167,7 @@ OpenHabConfig.create {
 
                             thermostat { serial "IEQ0170436"; type "HM-CC-TC" }
                             window("Südfenster") { serial "IEQ0204643"; type "HM-Sec-SC" }
-                            valve("Heizkörper") { serial "IEQ0172816"; type "HM-CC-VD" }
+                            valve("Ventil") { serial "IEQ0172816"; type "HM-CC-VD" }
                         }
                     }
                 }
@@ -189,9 +196,13 @@ OpenHabConfig.create {
             sonos("5CAAFD2155E8", SonosPlayer.SonosType.PLAY_1)
 
             elements {
-                element(NetatmoThing, "Buero") {
+                element(NetatmoThing, "Netatmo") {
                     equipmentId "70:ee:50:06:75:f4"
                     type(NetatmoThing.Type.BASE)
+                }
+
+                element(FritzBoxThing, "Rechner") {
+                    ain "087610039040"
                 }
 
                 heating {
@@ -215,6 +226,12 @@ OpenHabConfig.create {
                         element(HomeMaticThing, "Thermostat") {
                             type "HM-WDS40-TH-I"
                             serial "JEQ0218038"
+                        }
+                        element(FritzBoxThing, "Server") {
+                            ain "087610049084"
+                        }
+                        element(FritzBoxThing, "Heizung") {
+                            ain "087610200779"
                         }
                     }
                 }

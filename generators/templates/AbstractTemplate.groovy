@@ -11,7 +11,7 @@ abstract class AbstractTemplate {
         def output = []
 
         output << type
-        output << "i${thing.parentGroup.canonicalName}_$suffix"
+        output << "i${thing.canonicalName}_$suffix"
         output << /"$label"/
         if (icon) output << "<$icon>"
         if (groups) output << "(${groups.join(',')})"

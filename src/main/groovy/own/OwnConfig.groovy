@@ -38,6 +38,8 @@ OpenHabConfig.create {
             ipAddress "192.168.1.2"
             password '1431micong00'
         }
+
+        // hue: mprCQMrnZ6imZHfJnuQ3Pqnleo3iineNHnlLMTnb
     }
 
     elements {
@@ -70,12 +72,14 @@ OpenHabConfig.create {
 
                 room("REB", "Rebecca") {
 
-                    sonos("5CAAFD2197A0", SonosPlayer.SonosType.PLAY_1)
+                    sonos("5CAAFD2197A0", SonosPlayer.SonosType.PLAY_1) {
+                        messages("Kommst du bitte runter","Essen ist fertig","Ich habe Sofort gesagt","Kommst du bitte ins Bad?")
+                    }
 
                     smokedetector "NEQ0248173"
 
                     elements {
-                        element(NetatmoThing, "Netatmo") {
+                        element(NetatmoThing, "NARebecca") {
                             equipmentId "03:00:00:01:3a:80"
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
@@ -92,10 +96,12 @@ OpenHabConfig.create {
                 room("MIC", "Michael") {
 
                     smokedetector "NEQ0243894"
-                    sonos("5CAAFD2154C2", SonosPlayer.SonosType.PLAY_1)
+                    sonos("5CAAFD2154C2", SonosPlayer.SonosType.PLAY_1) {
+                        messages("Kommst du bitte runter","Essen ist fertig","Ich habe Sofort gesagt","Kommst du bitte ins Bad?")
+                    }
 
                     elements {
-                        element(NetatmoThing, "Netatmo") {
+                        element(NetatmoThing, "NAMichael") {
                             equipmentId "03:00:00:01:44:a0"
                             parentId "70:ee:50:06:75:f4"
                             type(NetatmoThing.Type.INDOOR)
@@ -129,11 +135,6 @@ OpenHabConfig.create {
 //                        }
                     }
                     elements {
-                        element(NetatmoThing, "Netatmo") {
-                            equipmentId "03:00:00:01:55:e2"
-                            parentId "70:ee:50:06:75:f4"
-                            type(NetatmoThing.Type.INDOOR)
-                        }
                         element(FritzBoxThing, "AVGeräte") {
                             ain "087610014130"
                         }
@@ -163,6 +164,11 @@ OpenHabConfig.create {
                     smokedetector "NEQ0247900"
 
                     elements {
+                        element(NetatmoThing, "NASchlafzimmer") {
+                            equipmentId "03:00:00:01:55:e2"
+                            parentId "70:ee:50:06:75:f4"
+                            type(NetatmoThing.Type.INDOOR)
+                        }
                         heating {
 
                             thermostat { serial "IEQ0170436"; type "HM-CC-TC" }
@@ -193,10 +199,12 @@ OpenHabConfig.create {
                 additionalGroup alle
             }
 
-            sonos("5CAAFD2155E8", SonosPlayer.SonosType.PLAY_1)
+            sonos("5CAAFD2155E8", SonosPlayer.SonosType.PLAY_1) {
+                messages("Kommst du bitte runter","Essen ist fertig","Ich habe Sofort gesagt","Kommst du bitte ins Bad?")
+            }
 
             elements {
-                element(NetatmoThing, "Netatmo") {
+                element(NetatmoThing, "NADG") {
                     equipmentId "70:ee:50:06:75:f4"
                     type(NetatmoThing.Type.BASE)
                 }

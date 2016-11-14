@@ -1,0 +1,23 @@
+// GENERATED FritzBox Fri Nov 11 18:38:54 CET 2016
+//-------------------------------------------- FritzAHA Wohn-/Esszimmer
+Group iWB_WOZ_AVGerte "Verbrauchsmesser AVGeräte" (rWB_WOZ)
+Number iWB_WOZ_AVGerte_Power "Leistung AVGeräte [%.1f W]" (iWB_WOZ_AVGerte,gPower,gChart) { channel="avmfritz:FRITZ_DECT_200:fritz:087610014130:power" }
+Number iWB_WOZ_AVGerte_Energy "Verbrauch AVGeräte [%d]" (iWB_WOZ_AVGerte,gEnergy,gChart) { channel="avmfritz:FRITZ_DECT_200:fritz:087610014130:energy" }
+
+//-------------------------------------------- FritzAHA Büro
+Group iDG_Rechner "Verbrauchsmesser Rechner" (rDG)
+Number iDG_Rechner_Power "Leistung Rechner [%.1f W]" (iDG_Rechner,gPower,gChart) { channel="avmfritz:FRITZ_DECT_200:fritz:087610039040:power" }
+Number iDG_Rechner_Energy "Verbrauch Rechner [%d]" (iDG_Rechner,gEnergy,gChart) { channel="avmfritz:FRITZ_DECT_200:fritz:087610039040:energy" }
+
+//-------------------------------------------- FritzAHA Heizungskeller
+Group iUG_HZG_Server "Verbrauchsmesser Server" (rUG_HZG)
+Number iUG_HZG_Server_Power "Leistung Server [%.1f W]" (iUG_HZG_Server,gPower,gChart) { channel="avmfritz:FRITZ_DECT_200:fritz:087610049084:power" }
+Number iUG_HZG_Server_Energy "Verbrauch Server [%d]" (iUG_HZG_Server,gEnergy,gChart) { channel="avmfritz:FRITZ_DECT_200:fritz:087610049084:energy" }
+
+//-------------------------------------------- FritzAHA Heizungskeller
+Group iUG_HZG_Heizung "Verbrauchsmesser Heizung" (rUG_HZG)
+Number iUG_HZG_Heizung_Power "Leistung Heizung [%.1f W]" (iUG_HZG_Heizung,gPower,gChart) { channel="avmfritz:FRITZ_DECT_200:fritz:087610200779:power" }
+Number iUG_HZG_Heizung_Energy "Verbrauch Heizung [%d]" (iUG_HZG_Heizung,gEnergy,gChart) { channel="avmfritz:FRITZ_DECT_200:fritz:087610200779:energy" }
+
+
+// END FritzBox

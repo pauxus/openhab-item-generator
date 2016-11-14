@@ -1,0 +1,11 @@
+// GENERATED AAThings Fri Nov 11 18:38:54 CET 2016
+Bridge netatmo:netatmoapi:na [ clientId="55f86fbf45a1e38a4b8b4578",clientSecret="inTUedfTGvaJXhpVZFLhcrBVydgH",username="stephan@pauxus.de",password="zBZFMP8BDbCLvEnvMoL" ] {
+  Thing NAModule4 NARebecca "Innenmodul NARebecca" [ equipmentId="03:00:00:01:3a:80",parentId="70:ee:50:06:75:f4" ] // @ "Rebecca"
+  Thing NAModule4 NAMichael "Innenmodul NAMichael" [ equipmentId="03:00:00:01:44:a0",parentId="70:ee:50:06:75:f4" ] // @ "Michael"
+  Thing NAModule4 NAWOZ "Innenmodul NAWOZ" [ equipmentId="03:00:00:01:55:e2",parentId="70:ee:50:06:75:f4" ] // @ "Wohn-/Esszimmer"
+  Thing NAMain NADG "Basisstation NADG" [ equipmentId="70:ee:50:06:75:f4" ] // @ "Büro"
+
+}
+
+
+// END AAThings

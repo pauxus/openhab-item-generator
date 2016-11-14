@@ -1,0 +1,27 @@
+// GENERATED Netatmo Fri Nov 11 18:38:55 CET 2016
+//-------------------------------------------- Netatmo Rebecca
+Group iWB_REB_NARebecca "Rebecca Netatmo" (rWB_REB)
+Number iWB_REB_NARebecca_Temp "NA Temperatur Rebecca [%.1f °C]" <temperature> (iWB_REB_NARebecca,gTemperatur,gChart) { channel="netatmo:NAModule4:na:NARebecca:Temperature" }
+Number iWB_REB_NARebecca_Humid "NA Feuchtigkeit Rebecca [%d %%]" <water> (iWB_REB_NARebecca,gFeuchtigkeit,gChart) { channel="netatmo:NAModule4:na:NARebecca:Humidity" }
+Number iWB_REB_NARebecca_CO2 "CO2 Rebecca [%d]" <temperature> (iWB_REB_NARebecca,gCO2,gChart) { channel="netatmo:NAModule4:na:NARebecca:Co2" }
+
+//-------------------------------------------- Netatmo Michael
+Group iWB_MIC_NAMichael "Michael Netatmo" (rWB_MIC)
+Number iWB_MIC_NAMichael_Temp "NA Temperatur Michael [%.1f °C]" <temperature> (iWB_MIC_NAMichael,gTemperatur,gChart) { channel="netatmo:NAModule4:na:NAMichael:Temperature" }
+Number iWB_MIC_NAMichael_Humid "NA Feuchtigkeit Michael [%d %%]" <water> (iWB_MIC_NAMichael,gFeuchtigkeit,gChart) { channel="netatmo:NAModule4:na:NAMichael:Humidity" }
+Number iWB_MIC_NAMichael_CO2 "CO2 Michael [%d]" <temperature> (iWB_MIC_NAMichael,gCO2,gChart) { channel="netatmo:NAModule4:na:NAMichael:Co2" }
+
+//-------------------------------------------- Netatmo Wohn-/Esszimmer
+Group iWB_WOZ_NAWOZ "Wohn-/Esszimmer Netatmo" (rWB_WOZ)
+Number iWB_WOZ_NAWOZ_Temp "NA Temperatur Wohn-/Esszimmer [%.1f °C]" <temperature> (iWB_WOZ_NAWOZ,gTemperatur,gChart) { channel="netatmo:NAModule4:na:NAWOZ:Temperature" }
+Number iWB_WOZ_NAWOZ_Humid "NA Feuchtigkeit Wohn-/Esszimmer [%d %%]" <water> (iWB_WOZ_NAWOZ,gFeuchtigkeit,gChart) { channel="netatmo:NAModule4:na:NAWOZ:Humidity" }
+Number iWB_WOZ_NAWOZ_CO2 "CO2 Wohn-/Esszimmer [%d]" <temperature> (iWB_WOZ_NAWOZ,gCO2,gChart) { channel="netatmo:NAModule4:na:NAWOZ:Co2" }
+
+//-------------------------------------------- Netatmo Büro
+Group iDG_NADG "Büro Netatmo" (rDG)
+Number iDG_NADG_Temp "NA Temperatur Büro [%.1f °C]" <temperature> (iDG_NADG,gTemperatur,gChart) { channel="netatmo:NAMain:na:NADG:Temperature" }
+Number iDG_NADG_Humid "NA Feuchtigkeit Büro [%d %%]" <water> (iDG_NADG,gFeuchtigkeit,gChart) { channel="netatmo:NAMain:na:NADG:Humidity" }
+Number iDG_NADG_CO2 "CO2 Büro [%d]" <temperature> (iDG_NADG,gCO2,gChart) { channel="netatmo:NAMain:na:NADG:Co2" }
+
+
+// END Netatmo

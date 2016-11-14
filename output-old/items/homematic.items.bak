@@ -1,0 +1,134 @@
+// GENERATED Heating Fri Nov 11 18:38:55 CET 2016
+//-------------------------------------------- Heizung Rebecca
+Group gWB_REB_Heating "Rebecca Heizung" (rWB_REB) ["Thermostat"]
+Number iWB_REB_Heating_Temp "Ist-Temperatur Rebecca [%.1f °C]" <temperature> (gWB_REB_Heating,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0509781:1#TEMPERATURE" }
+Number iWB_REB_Heating_Set "Soll-Temperatur Rebecca [%.1f °C]" <temperature> (gWB_REB_Heating,gTemperatur,gChart) ["TargetTemperature"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0509781:2#SETPOINT" }
+Number iWB_REB_Heating_Humid "Feuchtigkeit Rebecca [%d %%]" <water> (gWB_REB_Heating,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0509781:1#HUMIDITY" }
+String iWB_REB_Heating_Mode "Heizung Rebecca [%s]" (gWB_REB_Heating) ["homekit:HeatingCoolingMode"]
+Number iWB_REB_Heating_Rssi "RSSI Thermostat Rebecca [SCALE(rssi.scale):%s]" <signal> (gWB_REB_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0509781:0#RSSI_DEVICE" }
+Dimmer iWB_REB_Heating_Rssi_perc "RSSI Thermostat Rebecca [%d %%]" <signal> (gWB_REB_Heating,gWarnungen)
+String iWB_REB_Heating_LowBat "Batterie Thermostat Rebecca [MAP(lowbat.map):%s]" <battery> (gWB_REB_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0509781:0#LOWBAT" }
+String iWB_REB_Heating_Pending "Pending Thermostat Rebecca [MAP(configpending.map):%s" <error> (gWB_REB_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0509781:0#LOWBAT" }
+Contact iWB_REB_Heating_Sdfenster_Kontakt "Südfenster Rebecca [MAP(window.map):%s]" <window> (gWB_REB_Heating,gFenster,gChart) { channel="homematic:HG-HM-Sec-SCo:hg:MEQ0717740:1#STATE" }
+String iWB_REB_Heating_Sdfenster_LowBat "Südfenster Rebecca Batterie [MAP(lowbat.map):%s]" <battery> (gWB_REB_Heating,gWarnungen) { channel="homematic:HG-HM-Sec-SCo:hg:MEQ0717740:1#CONFIG_PENDING" }
+Number iWB_REB_Heating_Heizkrper_Pos "Heizkörper Rebecca [%d %%]" <heating> (gWB_REB_Heating,gVentile,gChart) { channel="homematic:HG-HM-CC-VD:hg:HEQ0137974:1#VALVE_STATE" }
+
+//-------------------------------------------- Heizung Michael
+Group gWB_MIC_Heating "Michael Heizung" (rWB_MIC) ["Thermostat"]
+Number iWB_MIC_Heating_Temp "Ist-Temperatur Michael [%.1f °C]" <temperature> (gWB_MIC_Heating,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-CC-TC:hg:IEQ0170661:1#TEMPERATURE" }
+Number iWB_MIC_Heating_Set "Soll-Temperatur Michael [%.1f °C]" <temperature> (gWB_MIC_Heating,gTemperatur,gChart) ["TargetTemperature"] { channel="homematic:HG-HM-CC-TC:hg:IEQ0170661:2#SETPOINT" }
+Number iWB_MIC_Heating_Humid "Feuchtigkeit Michael [%d %%]" <water> (gWB_MIC_Heating,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-CC-TC:hg:IEQ0170661:1#HUMIDITY" }
+String iWB_MIC_Heating_Mode "Heizung Michael [%s]" (gWB_MIC_Heating) ["homekit:HeatingCoolingMode"]
+Number iWB_MIC_Heating_Rssi "RSSI Thermostat Michael [SCALE(rssi.scale):%s]" <signal> (gWB_MIC_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:IEQ0170661:0#RSSI_DEVICE" }
+Dimmer iWB_MIC_Heating_Rssi_perc "RSSI Thermostat Michael [%d %%]" <signal> (gWB_MIC_Heating,gWarnungen)
+String iWB_MIC_Heating_LowBat "Batterie Thermostat Michael [MAP(lowbat.map):%s]" <battery> (gWB_MIC_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:IEQ0170661:0#LOWBAT" }
+String iWB_MIC_Heating_Pending "Pending Thermostat Michael [MAP(configpending.map):%s" <error> (gWB_MIC_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:IEQ0170661:0#LOWBAT" }
+Contact iWB_MIC_Heating_Nordfenster_Kontakt "Nordfenster Michael [MAP(window.map):%s]" <window> (gWB_MIC_Heating,gFenster,gChart) { channel="homematic:HG-HM-Sec-SC:hg:IEQ0032480:1#STATE" }
+String iWB_MIC_Heating_Nordfenster_LowBat "Nordfenster Michael Batterie [MAP(lowbat.map):%s]" <battery> (gWB_MIC_Heating,gWarnungen) { channel="homematic:HG-HM-Sec-SC:hg:IEQ0032480:1#CONFIG_PENDING" }
+Number iWB_MIC_Heating_Ventil_Pos "Ventil Michael [%d %%]" <heating> (gWB_MIC_Heating,gVentile,gChart) { channel="homematic:HG-HM-CC-VD:hg:IEQ0172061:1#VALVE_STATE" }
+
+//-------------------------------------------- Heizung Badezimmer
+Group gWB_BAD_Heating "Badezimmer Heizung" (rWB_BAD) ["Thermostat"]
+Number iWB_BAD_Heating_Temp "Ist-Temperatur Badezimmer [%.1f °C]" <temperature> (gWB_BAD_Heating,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0079972:1#TEMPERATURE" }
+Number iWB_BAD_Heating_Set "Soll-Temperatur Badezimmer [%.1f °C]" <temperature> (gWB_BAD_Heating,gTemperatur,gChart) ["TargetTemperature"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0079972:2#SETPOINT" }
+Number iWB_BAD_Heating_Humid "Feuchtigkeit Badezimmer [%d %%]" <water> (gWB_BAD_Heating,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0079972:1#HUMIDITY" }
+String iWB_BAD_Heating_Mode "Heizung Badezimmer [%s]" (gWB_BAD_Heating) ["homekit:HeatingCoolingMode"]
+Number iWB_BAD_Heating_Rssi "RSSI Thermostat Badezimmer [SCALE(rssi.scale):%s]" <signal> (gWB_BAD_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0079972:0#RSSI_DEVICE" }
+Dimmer iWB_BAD_Heating_Rssi_perc "RSSI Thermostat Badezimmer [%d %%]" <signal> (gWB_BAD_Heating,gWarnungen)
+String iWB_BAD_Heating_LowBat "Batterie Thermostat Badezimmer [MAP(lowbat.map):%s]" <battery> (gWB_BAD_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0079972:0#LOWBAT" }
+String iWB_BAD_Heating_Pending "Pending Thermostat Badezimmer [MAP(configpending.map):%s" <error> (gWB_BAD_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0079972:0#LOWBAT" }
+Contact iWB_BAD_Heating_Fenster_Kontakt "Fenster Badezimmer [MAP(window.map):%s]" <window> (gWB_BAD_Heating,gFenster,gChart) { channel="homematic:HG-HM-Sec-SC:hg:HEQ0106396:1#STATE" }
+String iWB_BAD_Heating_Fenster_LowBat "Fenster Badezimmer Batterie [MAP(lowbat.map):%s]" <battery> (gWB_BAD_Heating,gWarnungen) { channel="homematic:HG-HM-Sec-SC:hg:HEQ0106396:1#CONFIG_PENDING" }
+Number iWB_BAD_Heating_Ventil_Pos "Ventil Badezimmer [%d %%]" <heating> (gWB_BAD_Heating,gVentile,gChart) { channel="homematic:HG-HM-CC-VD:hg:FEQ0069155:1#VALVE_STATE" }
+
+//-------------------------------------------- Heizung Wohn-/Esszimmer
+Group gWB_WOZ_Heating "Wohn-/Esszimmer Heizung" (rWB_WOZ) ["Thermostat"]
+Number iWB_WOZ_Heating_Temp "Ist-Temperatur Wohn-/Esszimmer [%.1f °C]" <temperature> (gWB_WOZ_Heating,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0080137:1#TEMPERATURE" }
+Number iWB_WOZ_Heating_Set "Soll-Temperatur Wohn-/Esszimmer [%.1f °C]" <temperature> (gWB_WOZ_Heating,gTemperatur,gChart) ["TargetTemperature"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0080137:2#SETPOINT" }
+Number iWB_WOZ_Heating_Humid "Feuchtigkeit Wohn-/Esszimmer [%d %%]" <water> (gWB_WOZ_Heating,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0080137:1#HUMIDITY" }
+String iWB_WOZ_Heating_Mode "Heizung Wohn-/Esszimmer [%s]" (gWB_WOZ_Heating) ["homekit:HeatingCoolingMode"]
+Number iWB_WOZ_Heating_Rssi "RSSI Thermostat Wohn-/Esszimmer [SCALE(rssi.scale):%s]" <signal> (gWB_WOZ_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0080137:0#RSSI_DEVICE" }
+Dimmer iWB_WOZ_Heating_Rssi_perc "RSSI Thermostat Wohn-/Esszimmer [%d %%]" <signal> (gWB_WOZ_Heating,gWarnungen)
+String iWB_WOZ_Heating_LowBat "Batterie Thermostat Wohn-/Esszimmer [MAP(lowbat.map):%s]" <battery> (gWB_WOZ_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0080137:0#LOWBAT" }
+String iWB_WOZ_Heating_Pending "Pending Thermostat Wohn-/Esszimmer [MAP(configpending.map):%s" <error> (gWB_WOZ_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0080137:0#LOWBAT" }
+Contact iWB_WOZ_Heating_WZFenster_Kontakt "WZ-Fenster Wohn-/Esszimmer [MAP(window.map):%s]" <window> (gWB_WOZ_Heating,gFenster,gChart) { channel="homematic:HG-HM-Sec-RHS:hg:IEQ0206565:1#STATE" }
+String iWB_WOZ_Heating_WZFenster_LowBat "WZ-Fenster Wohn-/Esszimmer Batterie [MAP(lowbat.map):%s]" <battery> (gWB_WOZ_Heating,gWarnungen) { channel="homematic:HG-HM-Sec-RHS:hg:IEQ0206565:1#CONFIG_PENDING" }
+Contact iWB_WOZ_Heating_EZFenster_Kontakt "EZ-Fenster Wohn-/Esszimmer [MAP(window.map):%s]" <window> (gWB_WOZ_Heating,gFenster,gChart) { channel="homematic:HG-HM-Sec-RHS:hg:GEQ0128784:1#STATE" }
+String iWB_WOZ_Heating_EZFenster_LowBat "EZ-Fenster Wohn-/Esszimmer Batterie [MAP(lowbat.map):%s]" <battery> (gWB_WOZ_Heating,gWarnungen) { channel="homematic:HG-HM-Sec-RHS:hg:GEQ0128784:1#CONFIG_PENDING" }
+Number iWB_WOZ_Heating_WZVentil_Pos "WZ-Ventil Wohn-/Esszimmer [%d %%]" <heating> (gWB_WOZ_Heating,gVentile,gChart) { channel="homematic:HG-HM-CC-VD:hg:HEQ0081426:1#VALVE_STATE" }
+Number iWB_WOZ_Heating_EZVentil_Pos "EZ-Ventil Wohn-/Esszimmer [%d %%]" <heating> (gWB_WOZ_Heating,gVentile,gChart) { channel="homematic:HG-HM-CC-VD:hg:HEQ0081331:1#VALVE_STATE" }
+
+//-------------------------------------------- Heizung Schlafzimmer
+Group gWB_SZI_Heating "Schlafzimmer Heizung" (rWB_SZI) ["Thermostat"]
+Number iWB_SZI_Heating_Temp "Ist-Temperatur Schlafzimmer [%.1f °C]" <temperature> (gWB_SZI_Heating,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-CC-TC:hg:IEQ0170436:1#TEMPERATURE" }
+Number iWB_SZI_Heating_Set "Soll-Temperatur Schlafzimmer [%.1f °C]" <temperature> (gWB_SZI_Heating,gTemperatur,gChart) ["TargetTemperature"] { channel="homematic:HG-HM-CC-TC:hg:IEQ0170436:2#SETPOINT" }
+Number iWB_SZI_Heating_Humid "Feuchtigkeit Schlafzimmer [%d %%]" <water> (gWB_SZI_Heating,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-CC-TC:hg:IEQ0170436:1#HUMIDITY" }
+String iWB_SZI_Heating_Mode "Heizung Schlafzimmer [%s]" (gWB_SZI_Heating) ["homekit:HeatingCoolingMode"]
+Number iWB_SZI_Heating_Rssi "RSSI Thermostat Schlafzimmer [SCALE(rssi.scale):%s]" <signal> (gWB_SZI_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:IEQ0170436:0#RSSI_DEVICE" }
+Dimmer iWB_SZI_Heating_Rssi_perc "RSSI Thermostat Schlafzimmer [%d %%]" <signal> (gWB_SZI_Heating,gWarnungen)
+String iWB_SZI_Heating_LowBat "Batterie Thermostat Schlafzimmer [MAP(lowbat.map):%s]" <battery> (gWB_SZI_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:IEQ0170436:0#LOWBAT" }
+String iWB_SZI_Heating_Pending "Pending Thermostat Schlafzimmer [MAP(configpending.map):%s" <error> (gWB_SZI_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:IEQ0170436:0#LOWBAT" }
+Contact iWB_SZI_Heating_Sdfenster_Kontakt "Südfenster Schlafzimmer [MAP(window.map):%s]" <window> (gWB_SZI_Heating,gFenster,gChart) { channel="homematic:HG-HM-Sec-SC:hg:IEQ0204643:1#STATE" }
+String iWB_SZI_Heating_Sdfenster_LowBat "Südfenster Schlafzimmer Batterie [MAP(lowbat.map):%s]" <battery> (gWB_SZI_Heating,gWarnungen) { channel="homematic:HG-HM-Sec-SC:hg:IEQ0204643:1#CONFIG_PENDING" }
+Number iWB_SZI_Heating_Ventil_Pos "Ventil Schlafzimmer [%d %%]" <heating> (gWB_SZI_Heating,gVentile,gChart) { channel="homematic:HG-HM-CC-VD:hg:IEQ0172816:1#VALVE_STATE" }
+
+//-------------------------------------------- Heizung Büro
+Group gDG_Heating "Büro Heizung" (rDG) ["Thermostat"]
+Number iDG_Heating_Temp "Ist-Temperatur Büro [%.1f °C]" <temperature> (gDG_Heating,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0145776:1#TEMPERATURE" }
+Number iDG_Heating_Set "Soll-Temperatur Büro [%.1f °C]" <temperature> (gDG_Heating,gTemperatur,gChart) ["TargetTemperature"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0145776:2#SETPOINT" }
+Number iDG_Heating_Humid "Feuchtigkeit Büro [%d %%]" <water> (gDG_Heating,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-CC-TC:hg:HEQ0145776:1#HUMIDITY" }
+String iDG_Heating_Mode "Heizung Büro [%s]" (gDG_Heating) ["homekit:HeatingCoolingMode"]
+Number iDG_Heating_Rssi "RSSI Thermostat Büro [SCALE(rssi.scale):%s]" <signal> (gDG_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0145776:0#RSSI_DEVICE" }
+Dimmer iDG_Heating_Rssi_perc "RSSI Thermostat Büro [%d %%]" <signal> (gDG_Heating,gWarnungen)
+String iDG_Heating_LowBat "Batterie Thermostat Büro [MAP(lowbat.map):%s]" <battery> (gDG_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0145776:0#LOWBAT" }
+String iDG_Heating_Pending "Pending Thermostat Büro [MAP(configpending.map):%s" <error> (gDG_Heating,gWarnungen) { channel="homematic:HG-HM-CC-TC:hg:HEQ0145776:0#LOWBAT" }
+Contact iDG_Heating_Fenster_Kontakt "Fenster Büro [MAP(window.map):%s]" <window> (gDG_Heating,gFenster,gChart) { channel="homematic:HG-HM-Sec-SC:hg:HEQ0106327:1#STATE" }
+String iDG_Heating_Fenster_LowBat "Fenster Büro Batterie [MAP(lowbat.map):%s]" <battery> (gDG_Heating,gWarnungen) { channel="homematic:HG-HM-Sec-SC:hg:HEQ0106327:1#CONFIG_PENDING" }
+Number iDG_Heating_Ventil_L_Pos "Ventil_L Büro [%d %%]" <heating> (gDG_Heating,gVentile,gChart) { channel="homematic:HG-HM-CC-VD:hg:HEQ0513531:1#VALVE_STATE" }
+Number iDG_Heating_Ventil_R_Pos "Ventil_R Büro [%d %%]" <heating> (gDG_Heating,gVentile,gChart) { channel="homematic:HG-HM-CC-VD:hg:HEQ0147527:1#VALVE_STATE" }
+
+
+// END Heating
+// GENERATED Thermostat Fri Nov 11 18:37:21 CET 2016
+//-------------------------------------------- Thermostat Speisekammer
+Group iWB_SPS_Thermostat "Speisekammer Thermostat" (rWB_SPS)
+Number iWB_SPS_Thermostat_Temp "Ist-Temperatur Speisekammer [%.1f °C]" <temperature> (iWB_SPS_Thermostat,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064360:1#TEMPERATURE" }
+Number iWB_SPS_Thermostat_Humid "Feuchtigkeit Speisekammer [%d %%]" <water> (iWB_SPS_Thermostat,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064360:1#HUMIDITY" }
+Number iWB_SPS_Thermostat_Rssi "RSSI Thermostat Speisekammer [SCALE(rssi.scale):%s]" <signal> (iWB_SPS_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064360:0#RSSI_DEVICE" }
+Dimmer iWB_SPS_Thermostat_Rssi_perc "RSSI Thermostat Speisekammer [%d %%]" <signal> (iWB_SPS_Thermostat,gWarnungen)
+String iWB_SPS_Thermostat_LowBat "Batterie Thermostat Speisekammer [MAP(lowbat.map):%s]" <battery> (iWB_SPS_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064360:0#LOWBAT" }
+String iWB_SPS_Thermostat_Pending "Pending Thermostat Speisekammer [MAP(configpending.map):%s" <error> (iWB_SPS_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064360:0#CONFIG_PENDING" }
+
+//-------------------------------------------- Thermostat Heizungskeller
+Group iUG_HZG_Thermostat "Heizungskeller Thermostat" (rUG_HZG)
+Number iUG_HZG_Thermostat_Temp "Ist-Temperatur Heizungskeller [%.1f °C]" <temperature> (iUG_HZG_Thermostat,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0218038:1#TEMPERATURE" }
+Number iUG_HZG_Thermostat_Humid "Feuchtigkeit Heizungskeller [%d %%]" <water> (iUG_HZG_Thermostat,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0218038:1#HUMIDITY" }
+Number iUG_HZG_Thermostat_Rssi "RSSI Thermostat Heizungskeller [SCALE(rssi.scale):%s]" <signal> (iUG_HZG_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0218038:0#RSSI_DEVICE" }
+Dimmer iUG_HZG_Thermostat_Rssi_perc "RSSI Thermostat Heizungskeller [%d %%]" <signal> (iUG_HZG_Thermostat,gWarnungen)
+String iUG_HZG_Thermostat_LowBat "Batterie Thermostat Heizungskeller [MAP(lowbat.map):%s]" <battery> (iUG_HZG_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0218038:0#LOWBAT" }
+String iUG_HZG_Thermostat_Pending "Pending Thermostat Heizungskeller [MAP(configpending.map):%s" <error> (iUG_HZG_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0218038:0#CONFIG_PENDING" }
+
+//-------------------------------------------- Thermostat Vorratskeller
+Group iUG_VOR_Thermostat "Vorratskeller Thermostat" (rUG_VOR)
+Number iUG_VOR_Thermostat_Temp "Ist-Temperatur Vorratskeller [%.1f °C]" <temperature> (iUG_VOR_Thermostat,gTemperatur,gChart) ["CurrentTemperature"] { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064575:1#TEMPERATURE" }
+Number iUG_VOR_Thermostat_Humid "Feuchtigkeit Vorratskeller [%d %%]" <water> (iUG_VOR_Thermostat,gFeuchtigkeit,gChart) ["CurrentHumidity"] { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064575:1#HUMIDITY" }
+Number iUG_VOR_Thermostat_Rssi "RSSI Thermostat Vorratskeller [SCALE(rssi.scale):%s]" <signal> (iUG_VOR_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064575:0#RSSI_DEVICE" }
+Dimmer iUG_VOR_Thermostat_Rssi_perc "RSSI Thermostat Vorratskeller [%d %%]" <signal> (iUG_VOR_Thermostat,gWarnungen)
+String iUG_VOR_Thermostat_LowBat "Batterie Thermostat Vorratskeller [MAP(lowbat.map):%s]" <battery> (iUG_VOR_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064575:0#LOWBAT" }
+String iUG_VOR_Thermostat_Pending "Pending Thermostat Vorratskeller [MAP(configpending.map):%s" <error> (iUG_VOR_Thermostat,gWarnungen) { channel="homematic:HG-HM-WDS40-TH-I:hg:JEQ0064575:0#CONFIG_PENDING" }
+
+
+// END Thermostat
+// GENERATED Homematic Fri Nov 11 18:38:55 CET 2016
+//-------------------------------------------- Schalter Waschküche
+Group iUG_WAK_Trockner "Verbrauchsmesser Trockner" (rUG_WAK)
+Number iUG_WAK_Trockner_Power "Leistung Trockner [%.1f W]" (iUG_WAK_Trockner,gPower,gChart) { channel="homematic:HG-HM-ES-PMSw1-Pl:hg:MEQ0107141:2#POWER" }
+Number iUG_WAK_Trockner_Energy "Verbrauch Trockner [%d]" (iUG_WAK_Trockner,gEnergy,gChart) { channel="homematic:HG-HM-ES-PMSw1-Pl:hg:MEQ0107141:2#ENERGY_COUNTER" }
+
+//-------------------------------------------- Schalter Waschküche
+Group iUG_WAK_Waschmaschine "Verbrauchsmesser Waschmaschine" (rUG_WAK)
+Number iUG_WAK_Waschmaschine_Power "Leistung Waschmaschine [%.1f W]" (iUG_WAK_Waschmaschine,gPower,gChart) { channel="homematic:HG-HM-ES-PMSw1-Pl:hg:LEQ0530758:2#POWER" }
+Number iUG_WAK_Waschmaschine_Energy "Verbrauch Waschmaschine [%d]" (iUG_WAK_Waschmaschine,gEnergy,gChart) { channel="homematic:HG-HM-ES-PMSw1-Pl:hg:LEQ0530758:2#ENERGY_COUNTER" }
+
+
+// END Homematic

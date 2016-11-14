@@ -1,0 +1,105 @@
+// GENERATED Heating Fri Nov 11 18:37:21 CET 2016
+
+rule Heating_iWB_REB_Heating_Mode_Off
+when
+  Item iWB_REB_Heating_Heizkrper_Pos changed to 0
+then
+  sendCommand(iWB_REB_Heating_Mode, 'auto')
+end
+
+rule Heating_iWB_REB_Heating_Mode_On
+when
+  Item iWB_REB_Heating_Heizkrper_Pos changed from 0
+then
+  sendCommand(iWB_REB_Heating_Mode, 'heat')
+end
+
+
+
+
+rule Heating_iWB_MIC_Heating_Mode_Off
+when
+  Item iWB_MIC_Heating_Ventil_Pos changed to 0
+then
+  sendCommand(iWB_MIC_Heating_Mode, 'auto')
+end
+
+rule Heating_iWB_MIC_Heating_Mode_On
+when
+  Item iWB_MIC_Heating_Ventil_Pos changed from 0
+then
+  sendCommand(iWB_MIC_Heating_Mode, 'heat')
+end
+
+
+
+
+rule Heating_iWB_BAD_Heating_Mode_Off
+when
+  Item iWB_BAD_Heating_Ventil_Pos changed to 0
+then
+  sendCommand(iWB_BAD_Heating_Mode, 'auto')
+end
+
+rule Heating_iWB_BAD_Heating_Mode_On
+when
+  Item iWB_BAD_Heating_Ventil_Pos changed from 0
+then
+  sendCommand(iWB_BAD_Heating_Mode, 'heat')
+end
+
+
+
+
+rule Heating_iWB_WOZ_Heating_Mode_Off
+when
+  Item iWB_WOZ_Heating_WZVentil_Pos changed to 0
+then
+  sendCommand(iWB_WOZ_Heating_Mode, 'auto')
+end
+
+rule Heating_iWB_WOZ_Heating_Mode_On
+when
+  Item iWB_WOZ_Heating_WZVentil_Pos changed from 0
+then
+  sendCommand(iWB_WOZ_Heating_Mode, 'heat')
+end
+
+
+
+
+rule Heating_iWB_SZI_Heating_Mode_Off
+when
+  Item iWB_SZI_Heating_Ventil_Pos changed to 0
+then
+  sendCommand(iWB_SZI_Heating_Mode, 'auto')
+end
+
+rule Heating_iWB_SZI_Heating_Mode_On
+when
+  Item iWB_SZI_Heating_Ventil_Pos changed from 0
+then
+  sendCommand(iWB_SZI_Heating_Mode, 'heat')
+end
+
+
+
+
+rule Heating_iDG_Heating_Mode_Off
+when
+  Item iDG_Heating_Ventil_L_Pos changed to 0
+then
+  sendCommand(iDG_Heating_Mode, 'auto')
+end
+
+rule Heating_iDG_Heating_Mode_On
+when
+  Item iDG_Heating_Ventil_L_Pos changed from 0
+then
+  sendCommand(iDG_Heating_Mode, 'heat')
+end
+
+
+
+
+// END Heating

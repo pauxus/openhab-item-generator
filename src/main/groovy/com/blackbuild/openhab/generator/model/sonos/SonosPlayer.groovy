@@ -14,6 +14,7 @@ class SonosPlayer extends CompositeElement {
 
     String id
     SonosType type
+    List<String> messages
 
     SonosPlayer(String name, String id, SonosType type) {
         this(name)

@@ -1,0 +1,47 @@
+// GENERATED AAThings Fri Nov 11 18:38:54 CET 2016
+Bridge homematic:bridge:hg [ gatewayAddress="localhost" ] {
+  Thing HG-HM-Sec-SD-2-Team T-NEQ0247900 "HG-HM-Sec-SD-2-Team Rauchmelder_Team_Neu"  
+  Thing HG-Sonos-PLAY-1 5CAAFD2197A0 "HG-Sonos-PLAY-1 Rebecca"  // @ "Rebecca"
+  Thing HG-HM-Sec-SD-2 NEQ0248173 "HG-HM-Sec-SD-2 Smoke"  // @ "Rebecca"
+  Thing HG-HM-CC-TC HEQ0509781 "HG-HM-CC-TC Thermostat"  // @ "Rebecca"
+  Thing HG-HM-Sec-SCo MEQ0717740 "HG-HM-Sec-SCo Südfenster"  // @ "Rebecca"
+  Thing HG-HM-CC-VD HEQ0137974 "HG-HM-CC-VD Heizkörper"  // @ "Rebecca"
+  Thing HG-HM-Sec-SD-2 NEQ0243894 "HG-HM-Sec-SD-2 Smoke"  // @ "Michael"
+  Thing HG-Sonos-PLAY-1 5CAAFD2154C2 "HG-Sonos-PLAY-1 Michael"  // @ "Michael"
+  Thing HG-HM-CC-TC IEQ0170661 "HG-HM-CC-TC Thermostat"  // @ "Michael"
+  Thing HG-HM-Sec-SC IEQ0032480 "HG-HM-Sec-SC Nordfenster"  // @ "Michael"
+  Thing HG-HM-CC-VD IEQ0172061 "HG-HM-CC-VD Ventil"  // @ "Michael"
+  Thing HG-HM-CC-TC HEQ0079972 "HG-HM-CC-TC Thermostat"  // @ "Badezimmer"
+  Thing HG-HM-Sec-SC HEQ0106396 "HG-HM-Sec-SC Fenster"  // @ "Badezimmer"
+  Thing HG-HM-CC-VD FEQ0069155 "HG-HM-CC-VD Ventil"  // @ "Badezimmer"
+  Thing HG-HM-Sec-SD-2 NEQ0243890 "HG-HM-Sec-SD-2 Smoke"  // @ "Wohn-/Esszimmer"
+  Thing HG-Sonos-PLAY-5 5CAAFD0AAC36 "HG-Sonos-PLAY-5 Wohn-/Esszimmer"  // @ "Wohn-/Esszimmer"
+  Thing HG-HM-CC-TC HEQ0080137 "HG-HM-CC-TC Thermostat"  // @ "Wohn-/Esszimmer"
+  Thing HG-HM-Sec-RHS IEQ0206565 "HG-HM-Sec-RHS WZ-Fenster"  // @ "Wohn-/Esszimmer"
+  Thing HG-HM-Sec-RHS GEQ0128784 "HG-HM-Sec-RHS EZ-Fenster"  // @ "Wohn-/Esszimmer"
+  Thing HG-HM-CC-VD HEQ0081426 "HG-HM-CC-VD WZ-Ventil"  // @ "Wohn-/Esszimmer"
+  Thing HG-HM-CC-VD HEQ0081331 "HG-HM-CC-VD EZ-Ventil"  // @ "Wohn-/Esszimmer"
+  Thing HG-Sonos-PLAY-1 5CAAFD242B6C "HG-Sonos-PLAY-1 Küche"  // @ "Küche"
+  Thing HG-HM-WDS40-TH-I JEQ0064360 "HG-HM-WDS40-TH-I Thermostat"  // @ "Speisekammer"
+  Thing HG-HM-Sec-SD-2 NEQ0247900 "HG-HM-Sec-SD-2 Smoke"  // @ "Schlafzimmer"
+  Thing HG-HM-CC-TC IEQ0170436 "HG-HM-CC-TC Thermostat"  // @ "Schlafzimmer"
+  Thing HG-HM-Sec-SC IEQ0204643 "HG-HM-Sec-SC Südfenster"  // @ "Schlafzimmer"
+  Thing HG-HM-CC-VD IEQ0172816 "HG-HM-CC-VD Ventil"  // @ "Schlafzimmer"
+  Thing HG-HM-Sec-SD-2 NEQ0244388 "HG-HM-Sec-SD-2 EG"  // @ "Treppenhaus"
+  Thing HG-HM-Sec-SD-2 NEQ0248218 "HG-HM-Sec-SD-2 OG"  // @ "Treppenhaus"
+  Thing HG-HM-Sec-SC KEQ0159530 "HG-HM-Sec-SC Fenster"  // @ "Gästetoilette"
+  Thing HG-Sonos-PLAY-1 5CAAFD2155E8 "HG-Sonos-PLAY-1 Büro"  // @ "Büro"
+  Thing HG-HM-CC-TC HEQ0145776 "HG-HM-CC-TC Thermostat"  // @ "Büro"
+  Thing HG-HM-Sec-SC HEQ0106327 "HG-HM-Sec-SC Fenster"  // @ "Büro"
+  Thing HG-HM-CC-VD HEQ0513531 "HG-HM-CC-VD Ventil_L"  // @ "Büro"
+  Thing HG-HM-CC-VD HEQ0147527 "HG-HM-CC-VD Ventil_R"  // @ "Büro"
+  Thing HG-HM-WDS40-TH-I JEQ0218038 "HG-HM-WDS40-TH-I Thermostat"  // @ "Heizungskeller"
+  Thing HG-HM-WDS40-TH-I JEQ0064575 "HG-HM-WDS40-TH-I Thermostat"  // @ "Vorratskeller"
+  Thing HG-HM-ES-PMSw1-Pl MEQ0107141 "HG-HM-ES-PMSw1-Pl Trockner"  // @ "Waschküche"
+  Thing HG-HM-ES-PMSw1-Pl LEQ0530758 "HG-HM-ES-PMSw1-Pl Waschmaschine"  // @ "Waschküche"
+
+  Thing GATEWAY-EXTRAS-HG GWE00000000
+}
+
+
+// END AAThings

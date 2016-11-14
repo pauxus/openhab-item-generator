@@ -1,0 +1,9 @@
+// GENERATED AAThings Tue Nov 08 22:22:25 CET 2016
+// Bridgeless things
+Thing sonos:PLAY1:REB "PLAY1 Rebecca" [ udn="RINCON_5CAAFD2197A001400" ] // @ "Rebecca"
+Thing sonos:PLAY1:MIC "PLAY1 Michael" [ udn="RINCON_5CAAFD2154C201400" ] // @ "Michael"
+Thing sonos:PLAY5:WOZ "PLAY5 Wohn-/Esszimmer" [ udn="RINCON_5CAAFD0AAC3601400" ] // @ "Wohn-/Esszimmer"
+Thing sonos:PLAY1:KUE "PLAY1 Küche" [ udn="RINCON_5CAAFD242B6C01400" ] // @ "Küche"
+Thing sonos:PLAY1:DG "PLAY1 Büro" [ udn="RINCON_5CAAFD2155E801400" ] // @ "Büro"
+
+// END AAThings

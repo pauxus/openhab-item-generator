@@ -1,0 +1,11 @@
+// GENERATED AAThings Fri Nov 11 18:38:54 CET 2016
+Bridge avmfritz:fritzbox:fritz [ password="1431micong00",ipAddress="192.168.1.2" ] {
+  Thing FRITZ_DECT_200 087610014130 "FRITZ_DECT_200 AVGeräte" [ ain="087610014130" ] // @ "Wohn-/Esszimmer"
+  Thing FRITZ_DECT_200 087610039040 "FRITZ_DECT_200 Rechner" [ ain="087610039040" ] // @ "Büro"
+  Thing FRITZ_DECT_200 087610049084 "FRITZ_DECT_200 Server" [ ain="087610049084" ] // @ "Heizungskeller"
+  Thing FRITZ_DECT_200 087610200779 "FRITZ_DECT_200 Heizung" [ ain="087610200779" ] // @ "Heizungskeller"
+
+}
+
+
+// END AAThings

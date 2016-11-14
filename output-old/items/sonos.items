@@ -1,0 +1,68 @@
+// GENERATED Sonos Fri Nov 11 18:38:55 CET 2016
+//-------------------------------------------- Sonos Rebecca
+Group iWB_REB_Sonos "Rebecca Sonos" (rWB_REB)
+Player iWB_REB_Sonos_Control "Sonos Rebecca Steuerung" (iWB_REB_Sonos) { channel="sonos:PLAY1:REB:control" }
+Dimmer iWB_REB_Sonos_Volume "Sonos Rebecca Lautstärke" (iWB_REB_Sonos) { channel="sonos:PLAY1:REB:volume" }
+String iWB_REB_Sonos_Album "Sonos Rebecca Album" (iWB_REB_Sonos) { channel="sonos:PLAY1:REB:currentalbum" }
+String iWB_REB_Sonos_Artist "Sonos Rebecca Interpret" (iWB_REB_Sonos) { channel="sonos:PLAY1:REB:currentartist" }
+String iWB_REB_Sonos_Title "Sonos Rebecca Titel" (iWB_REB_Sonos) { channel="sonos:PLAY1:REB:currenttitle" }
+Switch iWB_REB_Sonos_Save "Sonos Rebecca Save" (iWB_REB_Sonos) { channel="sonos:PLAY1:REB:save" }
+Switch iWB_REB_Sonos_Restore "Sonos Rebecca Restore" (iWB_REB_Sonos) { channel="sonos:PLAY1:REB:restore" }
+String iWB_REB_SonosHG_Speak "Sonos Rebecca Sprachausgabe" (iWB_REB_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2197A0:1#PLAY_TTS" }
+String iWB_REB_SonosHG_Duration "Sonos Rebecca Dauer" (iWB_REB_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2197A0:1#CURRENT_TRACK_DURATION" }
+String iWB_REB_SonosHG_Time "Sonos Rebecca Zeit" (iWB_REB_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2197A0:1#CURRENT_TRACK_RELATIVE_TIME" }
+
+//-------------------------------------------- Sonos Michael
+Group iWB_MIC_Sonos "Michael Sonos" (rWB_MIC)
+Player iWB_MIC_Sonos_Control "Sonos Michael Steuerung" (iWB_MIC_Sonos) { channel="sonos:PLAY1:MIC:control" }
+Dimmer iWB_MIC_Sonos_Volume "Sonos Michael Lautstärke" (iWB_MIC_Sonos) { channel="sonos:PLAY1:MIC:volume" }
+String iWB_MIC_Sonos_Album "Sonos Michael Album" (iWB_MIC_Sonos) { channel="sonos:PLAY1:MIC:currentalbum" }
+String iWB_MIC_Sonos_Artist "Sonos Michael Interpret" (iWB_MIC_Sonos) { channel="sonos:PLAY1:MIC:currentartist" }
+String iWB_MIC_Sonos_Title "Sonos Michael Titel" (iWB_MIC_Sonos) { channel="sonos:PLAY1:MIC:currenttitle" }
+Switch iWB_MIC_Sonos_Save "Sonos Michael Save" (iWB_MIC_Sonos) { channel="sonos:PLAY1:MIC:save" }
+Switch iWB_MIC_Sonos_Restore "Sonos Michael Restore" (iWB_MIC_Sonos) { channel="sonos:PLAY1:MIC:restore" }
+String iWB_MIC_SonosHG_Speak "Sonos Michael Sprachausgabe" (iWB_MIC_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2154C2:1#PLAY_TTS" }
+String iWB_MIC_SonosHG_Duration "Sonos Michael Dauer" (iWB_MIC_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2154C2:1#CURRENT_TRACK_DURATION" }
+String iWB_MIC_SonosHG_Time "Sonos Michael Zeit" (iWB_MIC_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2154C2:1#CURRENT_TRACK_RELATIVE_TIME" }
+
+//-------------------------------------------- Sonos Wohn-/Esszimmer
+Group iWB_WOZ_Sonos "Wohn-/Esszimmer Sonos" (rWB_WOZ)
+Player iWB_WOZ_Sonos_Control "Sonos Wohn-/Esszimmer Steuerung" (iWB_WOZ_Sonos) { channel="sonos:PLAY5:WOZ:control" }
+Dimmer iWB_WOZ_Sonos_Volume "Sonos Wohn-/Esszimmer Lautstärke" (iWB_WOZ_Sonos) { channel="sonos:PLAY5:WOZ:volume" }
+String iWB_WOZ_Sonos_Album "Sonos Wohn-/Esszimmer Album" (iWB_WOZ_Sonos) { channel="sonos:PLAY5:WOZ:currentalbum" }
+String iWB_WOZ_Sonos_Artist "Sonos Wohn-/Esszimmer Interpret" (iWB_WOZ_Sonos) { channel="sonos:PLAY5:WOZ:currentartist" }
+String iWB_WOZ_Sonos_Title "Sonos Wohn-/Esszimmer Titel" (iWB_WOZ_Sonos) { channel="sonos:PLAY5:WOZ:currenttitle" }
+Switch iWB_WOZ_Sonos_Save "Sonos Wohn-/Esszimmer Save" (iWB_WOZ_Sonos) { channel="sonos:PLAY5:WOZ:save" }
+Switch iWB_WOZ_Sonos_Restore "Sonos Wohn-/Esszimmer Restore" (iWB_WOZ_Sonos) { channel="sonos:PLAY5:WOZ:restore" }
+String iWB_WOZ_SonosHG_Speak "Sonos Wohn-/Esszimmer Sprachausgabe" (iWB_WOZ_Sonos) { channel="homematic:HG-Sonos-PLAY-5:hg:5CAAFD0AAC36:1#PLAY_TTS" }
+String iWB_WOZ_SonosHG_Duration "Sonos Wohn-/Esszimmer Dauer" (iWB_WOZ_Sonos) { channel="homematic:HG-Sonos-PLAY-5:hg:5CAAFD0AAC36:1#CURRENT_TRACK_DURATION" }
+String iWB_WOZ_SonosHG_Time "Sonos Wohn-/Esszimmer Zeit" (iWB_WOZ_Sonos) { channel="homematic:HG-Sonos-PLAY-5:hg:5CAAFD0AAC36:1#CURRENT_TRACK_RELATIVE_TIME" }
+
+//-------------------------------------------- Sonos Küche
+Group iWB_KUE_Sonos "Küche Sonos" (rWB_KUE)
+Player iWB_KUE_Sonos_Control "Sonos Küche Steuerung" (iWB_KUE_Sonos) { channel="sonos:PLAY1:KUE:control" }
+Dimmer iWB_KUE_Sonos_Volume "Sonos Küche Lautstärke" (iWB_KUE_Sonos) { channel="sonos:PLAY1:KUE:volume" }
+String iWB_KUE_Sonos_Album "Sonos Küche Album" (iWB_KUE_Sonos) { channel="sonos:PLAY1:KUE:currentalbum" }
+String iWB_KUE_Sonos_Artist "Sonos Küche Interpret" (iWB_KUE_Sonos) { channel="sonos:PLAY1:KUE:currentartist" }
+String iWB_KUE_Sonos_Title "Sonos Küche Titel" (iWB_KUE_Sonos) { channel="sonos:PLAY1:KUE:currenttitle" }
+Switch iWB_KUE_Sonos_Save "Sonos Küche Save" (iWB_KUE_Sonos) { channel="sonos:PLAY1:KUE:save" }
+Switch iWB_KUE_Sonos_Restore "Sonos Küche Restore" (iWB_KUE_Sonos) { channel="sonos:PLAY1:KUE:restore" }
+String iWB_KUE_SonosHG_Speak "Sonos Küche Sprachausgabe" (iWB_KUE_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD242B6C:1#PLAY_TTS" }
+String iWB_KUE_SonosHG_Duration "Sonos Küche Dauer" (iWB_KUE_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD242B6C:1#CURRENT_TRACK_DURATION" }
+String iWB_KUE_SonosHG_Time "Sonos Küche Zeit" (iWB_KUE_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD242B6C:1#CURRENT_TRACK_RELATIVE_TIME" }
+
+//-------------------------------------------- Sonos Büro
+Group iDG_Sonos "Büro Sonos" (rDG)
+Player iDG_Sonos_Control "Sonos Büro Steuerung" (iDG_Sonos) { channel="sonos:PLAY1:DG:control" }
+Dimmer iDG_Sonos_Volume "Sonos Büro Lautstärke" (iDG_Sonos) { channel="sonos:PLAY1:DG:volume" }
+String iDG_Sonos_Album "Sonos Büro Album" (iDG_Sonos) { channel="sonos:PLAY1:DG:currentalbum" }
+String iDG_Sonos_Artist "Sonos Büro Interpret" (iDG_Sonos) { channel="sonos:PLAY1:DG:currentartist" }
+String iDG_Sonos_Title "Sonos Büro Titel" (iDG_Sonos) { channel="sonos:PLAY1:DG:currenttitle" }
+Switch iDG_Sonos_Save "Sonos Büro Save" (iDG_Sonos) { channel="sonos:PLAY1:DG:save" }
+Switch iDG_Sonos_Restore "Sonos Büro Restore" (iDG_Sonos) { channel="sonos:PLAY1:DG:restore" }
+String iDG_SonosHG_Speak "Sonos Büro Sprachausgabe" (iDG_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2155E8:1#PLAY_TTS" }
+String iDG_SonosHG_Duration "Sonos Büro Dauer" (iDG_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2155E8:1#CURRENT_TRACK_DURATION" }
+String iDG_SonosHG_Time "Sonos Büro Zeit" (iDG_Sonos) { channel="homematic:HG-Sonos-PLAY-1:hg:5CAAFD2155E8:1#CURRENT_TRACK_RELATIVE_TIME" }
+
+
+// END Sonos

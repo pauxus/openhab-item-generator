@@ -13,8 +13,8 @@ into("items/homematic.items") { out ->
         thermostat.with {
             out.println  """Group ${fullName} "$parentGroup.label Thermostat" (${allGroupsAsString})"""
 
-            out.println createItem(ItemType.Number, "Temp", "Ist-Temperatur $thermostat.parentGroup.label [%.1f °C]", "temperature", [ thermostat.fullName, 'gTemperatur', 'gChart' ], ["CurrentTemperature"], "1#TEMPERATURE")
-            out.println createItem(ItemType.Number, "Humid", "Feuchtigkeit $thermostat.parentGroup.label [%d %%]", "water", [ thermostat.fullName, 'gFeuchtigkeit', 'gChart' ], ["CurrentHumidity"], "1#HUMIDITY")
+            out.println createItem(ItemType.Number, "Temp", "$thermostat.parentGroup.label Temperatur  [%.1f °C]", "temperature", [ thermostat.fullName, 'gTemperatur', 'gChart' ], ["CurrentTemperature"], "1#TEMPERATURE")
+            out.println createItem(ItemType.Number, "Humid", "$thermostat.parentGroup.label Feuchtigkeit  [%d %%]", "water", [ thermostat.fullName, 'gFeuchtigkeit', 'gChart' ], ["CurrentHumidity"], "1#HUMIDITY")
 
             out.println createItem(ItemType.Number, "Rssi", "RSSI Thermostat $thermostat.parentGroup.label [SCALE(rssi.scale):%s]", "signal", [ thermostat.fullName, 'gWarnungen' ], null, "0#RSSI_DEVICE")
             out.println createItem(ItemType.Dimmer, "Rssi_perc", "RSSI Thermostat $thermostat.parentGroup.label [%d %%]", "signal", [ thermostat.fullName, 'gWarnungen' ])

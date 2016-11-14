@@ -2,6 +2,7 @@ import com.blackbuild.openhab.generator.model.NetatmoThing
 import com.blackbuild.openhab.generator.model.Room
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticHeating
 import com.blackbuild.openhab.generator.model.homematic.HomeMaticThing
+import com.blackbuild.openhab.generator.model.sonos.SonosPlayer
 
 into("sitemaps/default.sitemap") { out ->
 
@@ -15,18 +16,27 @@ into("sitemaps/default.sitemap") { out ->
 
         boolean content = false
 
-        out.println """
-Text label="$room.label" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
+        HomeMaticHeating heating = room.heating
+        HomeMaticThing thermostat = room.thermostat
+        NetatmoThing netatmo = room.netatmo
+        SonosPlayer sonos = room.sonos
 
-        HomeMaticHeating heating = room.elements.find{it instanceof HomeMaticHeating} as HomeMaticHeating
+        out.println ""
+        if (heating || thermostat)
+            out.println """Text item=i${room.canonicalName}_ClimateLabel label="$room.label [%s]" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
+        else if (thermostat)
+            out.println """Text item=i${thermostat.canonicalName}_Temp label="$room.label [%.1f °C]" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
+        else
+            out.println """Text label="$room.label" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
+
         if (heating) {
             content = true
             out.println """    //-------------------- Heating
-    Text item=i${heating.canonicalName}_Temp  label="Ist-Temperatur [%.1f °C]"
-    Setpoint item=i${heating.canonicalName}_Set label="Soll-Temperatur [%.1f °C]" minValue=5 maxValue=28 step=0.5"""
+    Text item=i${heating.canonicalName}_Temp  label="Temperatur [%.1f °C]"
+    Setpoint item=i${heating.canonicalName}_Set label="Soll [%.1f °C]" minValue=5 maxValue=28 step=0.5"""
 
             if (heating.fixValues) {
-                out.println """    Switch item=i${heating.canonicalName}_Set label=\"Soll-Temperatur\" mappings=[${heating.fixValues.collect { sprintf('"%.1f"="%.1f°C"', it, it) }.join(",")}]"""
+                out.println """    Switch item=i${heating.canonicalName}_Set label=\"Soll\" mappings=[${heating.fixValues.collect { sprintf('"%.1f"="%.1f°C"', it, it).replace(',', '.') }.join(",")}]"""
             }
 
             heating.windows.each {
@@ -38,16 +48,12 @@ Text label="$room.label" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
             }
         }
 
-        HomeMaticThing thermostat = room.elements.find {
-            it instanceof HomeMaticThing && it.@type == "HM-WDS40-TH-I"
-        } as HomeMaticThing
         if (thermostat) {
             content = true
             out.println """    //-------------------- Thermostat
-    Text item=i${thermostat.canonicalName}_Temp  label="Ist-Temperatur [%.1f °C]" """
+    Text item=i${thermostat.canonicalName}_Temp  label="Temperatur [%.1f °C]" """
         }
 
-        NetatmoThing netatmo = room.elements.find { it instanceof NetatmoThing } as NetatmoThing
         if (netatmo) {
             content = true
             out.println """    //-------------------- Heating
@@ -59,6 +65,12 @@ Text label="$room.label" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
 //    Number ${netatmo.fullName}_Pressure    label="Luftdruck [%.2f mbar]"        (${netatmo.fullName},Netatmo)"""
 //
         }
+
+        if (sonos && sonos.messages) {
+            out.println """    // Sonos"""
+            out.println """    Selection item=i${room.canonicalName}_SonosHG_Speak label="Sonos" mappings=[${sonos.messages.collect{"\"$it\"=\"$it\""}.join(",")}]"""
+        }
+
         if (!content)
             out.println """  Text label="empty" """
 
@@ -66,4 +78,53 @@ Text label="$room.label" ${room.icon ? "icon=\"$room.icon\"" : ''} {"""
 
     }
     out.println "}"
+}
+
+
+into('rules/roomlabels.rules') { out ->
+
+    config.all(Room).findAll{it.heating}.each { room ->
+
+        HomeMaticHeating heating = room.heating
+        NetatmoThing netatmo = room.netatmo
+
+        List<String> items = []
+
+        items.addAll(  ['Temp', 'Set', 'Mode'].collect { "i${heating.canonicalName}_$it" } )
+
+        if (netatmo)
+            items << "i${netatmo.parentObject.canonicalName}_CO2"
+
+        items.addAll "g${heating.parentGroup.canonicalName}_Windows"
+
+        out.println """
+rule ${room.fullName}_ClimateLabel
+when
+${items.collect{"  Item $it received update"}.join(" or\n") }
+then
+    var String co2 = ""
+    var String mode = ""
+
+${if (netatmo) """
+    if (i${netatmo.canonicalName}_CO2.state > 1000) {
+        co2 = "!"
+    } else if (i${netatmo.canonicalName}_CO2.state > 2000) {
+        co2 = "!!!"
+    }""" else ""}
+    if (i${heating.canonicalName}_Mode.state == "heat") {
+        mode = "*"
+    }
+
+    if (g${heating.parentGroup.canonicalName}_Windows.state == OPEN) {
+        i${heating.parentGroup.canonicalName}_ClimateLabel.postUpdate(String::format("(%.1f°C)%s", (i${heating.canonicalName}_Temp.state as DecimalType).floatValue(), co2))
+    } else {
+        i${heating.parentGroup.canonicalName}_ClimateLabel.postUpdate(String::format("%s%.1f°C/%.1f°C%s", mode, (i${heating.canonicalName}_Temp.state as DecimalType).floatValue(), (i${heating.canonicalName}_Set.state as DecimalType).floatValue(), co2))
+    }
+end
+"""
+
+
+
+    }
+
 }
